@@ -4,8 +4,8 @@
 GLFWwindow* window::m_window = nullptr;
 int window::m_width = WIN_WIDTH;
 int window::m_height = WIN_HEIGHT;
-float window::m_aspectRatio = 16.0f / 9.0f;
-glm::mat4 window::m_projectionMatrix = glm::mat4(1.0f);
+float window::m_aspect_ratio = 16.0f / 9.0f;
+glm::mat4 window::m_projection_matrix = glm::mat4(1.0f);
 
 window::~window() {
     if (m_window) {
@@ -68,12 +68,12 @@ void window::framebuffer_size_callback(GLFWwindow* window, int width, int height
 
 void window::calculate_aspect_ratio() {
     if (m_height != 0) {
-        m_aspectRatio = static_cast<float>(m_width) / static_cast<float>(m_height);
+        m_aspect_ratio = static_cast<float>(m_width) / static_cast<float>(m_height);
     }
 }
 
 void window::adjust_projection() {
-    m_projectionMatrix = glm::ortho(-m_aspectRatio, m_aspectRatio, -1.0f, 1.0f, -1.0f, 1.0f);
+    m_projection_matrix = glm::ortho(-m_aspect_ratio, m_aspect_ratio, -1.0f, 1.0f, -1.0f, 1.0f);
 }
 
 void window::fix_resolution() {
@@ -93,9 +93,9 @@ void window::set_window_size(int width, int height) {
 }
 
 float window::get_aspect_ratio() {
-    return m_aspectRatio;
+    return m_aspect_ratio;
 }
 
 glm::mat4 window::get_projection_matrix() {
-    return m_projectionMatrix;
+    return m_projection_matrix;
 }

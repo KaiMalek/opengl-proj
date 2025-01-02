@@ -10,4 +10,5 @@ namespace variables {
 
 	// cube settings
 	inline float cube_angle = 0.0f;
+	inline float cube_rotate_speed = 0.0f;
 }

@@ -37,5 +37,6 @@ void debug_menu::frame_render() {
     ImGui::Text("FPS: %.1f", ImGui::GetIO().Framerate);
     ImGui::Checkbox("Enable movement", &variables::enable_movement);
     ImGui::SliderFloat("Cube's angle", &variables::cube_angle, 0.0f, 360.0f, "%.2f");
+    ImGui::SliderFloat("Cube's rotation speed", &variables::cube_rotate_speed, 0.0f, 10.0f, "%.2f");
     ImGui::End();
 }

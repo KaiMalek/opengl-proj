@@ -29,7 +29,7 @@ bool engine::initialize(int width, int height, const char* title) {
         return false;
     }
 
-    glm::vec3 camera_pos = glm::vec3(3.0f, 0.0f, 3.0f);
+    glm::vec3 camera_pos = glm::vec3(0.0f, 1.0f, 3.0f);
     glm::vec3 up_direction = glm::vec3(0.0f, 1.0f, 0.0f);
 
     c_camera = new camera(camera_pos, up_direction, 45.0f, static_cast<float>(width) / height, 0.1f, 100.0f);
@@ -112,8 +112,8 @@ void engine::run() {
         c_shader->set_mat4("projection", projection);
         c_shader->set_mat4("view", view);
 
-        model = glm::rotate(glm::mat4(1.0f), glm::radians(variables::cube_angle), glm::vec3(1.0f, 0.0f, 0.0f));
-        variables::cube_angle += 0.5f;
+        model = glm::rotate(glm::mat4(1.0f), glm::radians(variables::cube_angle), glm::vec3(1.0f, 1.0f, 0.0f));
+        variables::cube_angle += variables::cube_rotate_speed;
         c_shader->set_mat4("model", model);
 
         c_texture->bind();

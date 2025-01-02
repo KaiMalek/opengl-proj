@@ -31,8 +31,8 @@ public:
     static int m_width, m_height;
 private:
     static GLFWwindow* m_window;
-    static float m_aspectRatio;
-    static glm::mat4 m_projectionMatrix;
+    static float m_aspect_ratio;
+    static glm::mat4 m_projection_matrix;
 
     static void calculate_aspect_ratio();
     static void adjust_projection();
