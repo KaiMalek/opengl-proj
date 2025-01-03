@@ -111,7 +111,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\projects\opengl-proj\dependencies\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib;assimp-vc143-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -131,7 +131,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\projects\opengl-proj\dependencies\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib;assimp-vc143-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -147,6 +147,7 @@
     <ClCompile Include="engine\core\debug_menu\debug_menu.cpp" />
     <ClCompile Include="engine\core\engine.cpp" />
     <ClCompile Include="engine\core\timer.cpp" />
+    <ClCompile Include="engine\graphics\model_renderer\models.cpp" />
     <ClCompile Include="engine\graphics\shaders.cpp" />
     <ClCompile Include="engine\core\window.cpp" />
     <ClCompile Include="engine\graphics\textures.cpp" />
@@ -155,6 +156,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dependencies\glm_util.h" />
+    <ClInclude Include="dependencies\includes\assimp\config.h" />
+    <ClInclude Include="dependencies\includes\assimp\revision.h" />
     <ClInclude Include="dependencies\includes\glad\glad.h" />
     <ClInclude Include="dependencies\includes\GLFW\glfw3.h" />
     <ClInclude Include="dependencies\includes\GLFW\glfw3native.h" />
@@ -173,6 +176,7 @@
     <ClInclude Include="engine\core\engine.h" />
     <ClInclude Include="engine\core\timer.h" />
     <ClInclude Include="engine\core\variables.h" />
+    <ClInclude Include="engine\graphics\model_renderer\models.h" />
     <ClInclude Include="engine\graphics\render.h" />
     <ClInclude Include="engine\graphics\shaders.h" />
     <ClInclude Include="engine\core\window.h" />

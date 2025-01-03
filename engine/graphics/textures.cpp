@@ -28,7 +28,8 @@ void texture::load_texture(const std::string& path) {
         stbi_image_free(data);
     }
     else {
-        std::cout << "Failed to load texture at " << path << std::endl;
+        std::cout << "Texture failed to load at path: " << path << std::endl;
+        std::cout << "STB Image Error: " << stbi_failure_reason() << std::endl;
         stbi_image_free(data);
     }
 
