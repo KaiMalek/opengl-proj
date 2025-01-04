@@ -1,19 +1,24 @@
 #include "models.h"
 #include <filesystem>
 
-model::model(const std::string& path, bool gamma) : gamma_correction(gamma)
-{
+model::model(const std::string& path, bool gamma) : gamma_correction(gamma) {
     load_model(path);
 }
 
-void model::draw(shader& shader)
-{
+void model::draw(shader& shader) {
+    glm::mat4 model = model_matrix;
+    shader.set_mat4("model", model);
+
     for (unsigned int i = 0; i < meshes.size(); i++)
         meshes[i].draw(shader);
 }
 
-void model::load_model(const std::string& path)
-{
+void model::set_model_position(const glm::vec3& position) {
+    model_position = position;
+    model_matrix = glm::translate(glm::mat4(1.0f), position);
+}
+
+void model::load_model(const std::string& path) {
     Assimp::Importer importer;
     const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
 
@@ -27,8 +32,7 @@ void model::load_model(const std::string& path)
     process_node(scene->mRootNode, scene);
 }
 
-void model::process_node(aiNode* node, const aiScene* scene)
-{
+void model::process_node(aiNode* node, const aiScene* scene) {
     for (unsigned int i = 0; i < node->mNumMeshes; i++)
     {
         aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
@@ -41,8 +45,7 @@ void model::process_node(aiNode* node, const aiScene* scene)
     }
 }
 
-mesh model::process_mesh(aiMesh* ai_mesh, const aiScene* scene)
-{
+mesh model::process_mesh(aiMesh* ai_mesh, const aiScene* scene) {
     std::vector<vertex> vertices;
     std::vector<unsigned int> indices;
     std::vector<model_texture> textures;
@@ -111,8 +114,7 @@ mesh model::process_mesh(aiMesh* ai_mesh, const aiScene* scene)
     return mesh(vertices, indices, textures);
 }
 
-std::vector<model_texture> model::load_material_textures(aiMaterial* mat, aiTextureType type, const std::string& type_name)
-{
+std::vector<model_texture> model::load_material_textures(aiMaterial* mat, aiTextureType type, const std::string& type_name) {
     std::vector<model_texture> textures;
     for (unsigned int i = 0; i < mat->GetTextureCount(type); i++)
     {

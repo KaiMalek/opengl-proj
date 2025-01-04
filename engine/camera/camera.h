@@ -31,6 +31,8 @@ public:
 
     camera(glm::vec3 position, glm::vec3 up, float fov, float aspect, float near, float far);
 
+    void update_movement();
+
     glm::mat4 get_view_matrix();
     glm::mat4 get_projection_matrix();
 

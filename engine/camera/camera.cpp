@@ -2,7 +2,7 @@
 
 camera::camera(glm::vec3 position, glm::vec3 up, float fov, float aspect, float near, float far)
     : m_position(position), m_up(up), m_fov(fov), m_aspect(aspect), m_near(near), m_far(far),
-    m_yaw(-90.0f), m_pitch(0.0f), m_movement_speed(3.0f), m_mouse_sensitivity(0.1f), m_cursor_locked(false)
+    m_yaw(-90.0f), m_pitch(0.0f), m_movement_speed(8.0f), m_mouse_sensitivity(0.1f), m_cursor_locked(false)
 {
     m_front = glm::vec3(0.0f, 0.0f, -1.0f);
 

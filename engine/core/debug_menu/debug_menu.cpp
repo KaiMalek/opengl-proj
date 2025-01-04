@@ -45,19 +45,35 @@ void debug_menu::frame_render() {
     if (months == 12)
         months == 0;
 
+    static int tab = 0;
+
     ImGui::SetNextWindowPos(ImVec2{ 20.f, 500.f }, ImGuiCond_Once);
     ImGui::SetNextWindowSize(ImVec2{ 600.f, 200.f }, ImGuiCond_Once);
     ImGui::Begin("debug_menu", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
-    ImGui::Text("FPS: %.1f", ImGui::GetIO().Framerate);
-    ImGui::Checkbox("Enable movement", &variables::enable_movement);
-    ImGui::SliderFloat("Cube's angle", &variables::cube_angle, 0.0f, 360.0f, "%.2f");
-    ImGui::SliderFloat("Cube's rotation speed", &variables::cube_rotate_speed, 0.0f, 10.0f, "%.2f");
-    ImGui::Text("Time on earth -", hours);
-    ImGui::Text("Year: %i", years);
-    ImGui::SameLine();
-    ImGui::Text("Month: %i", months);
-    ImGui::Text("Day: %i", days);
-    ImGui::SameLine();
-    ImGui::Text("Hour: %i", hours);
+
+    if (ImGui::Button("Engine"))
+        tab = 0;
+    if (ImGui::Button("Settings"))
+        tab = 1;
+
+    switch (tab) {
+    case 0:
+        ImGui::SliderFloat("Worlds angle", &variables::cube_angle, 0.0f, 360.0f, "%.2f");
+        ImGui::SliderFloat("Worlds rotation speed", &variables::cube_rotate_speed, 0.0f, 10.0f, "%.2f");
+        ImGui::Text("Time on earth -", hours);
+        ImGui::Text("Year: %i", years);
+        ImGui::SameLine();
+        ImGui::Text("Month: %i", months);
+        ImGui::Text("Day: %i", days);
+        ImGui::SameLine();
+        ImGui::Text("Hour: %i", hours);
+        break;
+    case 1:
+        ImGui::Checkbox("Enable movement", &variables::enable_movement);
+        //ImGui::SliderFloat("Movements speed", &c_camera->m_movement_speed, 0.0f, 10.0f, "%.2f");
+        //ImGui::SliderFloat("Mouse sensitivity", &c_camera->m_mouse_sensitivity, 0.0f, 1.0f, "%.2f");
+        break;
+    }
+
     ImGui::End();
 }

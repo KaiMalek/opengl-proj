@@ -13,6 +13,7 @@
 
 #include "../../mesh/mesh.h"
 #include "../shaders.h"
+#include "../../camera/camera.h"
 
 #include <iostream>
 #include <string>
@@ -21,6 +22,7 @@
 class model
 {
 public:
+    glm::mat4 model_matrix;
     std::vector<model_texture> textures_loaded;
     std::vector<mesh> meshes;
     std::string directory;
@@ -29,8 +31,11 @@ public:
 
     model(const std::string& path, bool gamma = false);
     void draw(shader& shader);
+    void set_model_position(const glm::vec3& position);
 
 private:
+    glm::vec3 model_position;
+
     void load_model(const std::string& path);
     void process_node(aiNode* node, const aiScene* scene);
     mesh process_mesh(aiMesh* ai_mesh, const aiScene* scene);

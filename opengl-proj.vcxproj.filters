@@ -69,6 +69,9 @@
     <ClCompile Include="engine\graphics\model_renderer\models.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="engine\graphics\model_renderer\level_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dependencies\includes\glad\glad.h">
@@ -155,6 +158,9 @@
     <ClInclude Include="engine\graphics\model_renderer\models.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="engine\graphics\model_renderer\level_manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\dev_128x128.jpg">
@@ -170,5 +176,7 @@
   <ItemGroup>
     <None Include="resources\shader.frag" />
     <None Include="resources\shader.vert" />
+    <None Include="resources\skybox\sky_shader.frag" />
+    <None Include="resources\skybox\sky_shader.vert" />
   </ItemGroup>
 </Project>

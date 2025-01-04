@@ -148,6 +148,7 @@
     <ClCompile Include="engine\core\engine.cpp" />
     <ClCompile Include="engine\core\timer.cpp" />
     <ClCompile Include="engine\graphics\model_renderer\models.cpp" />
+    <ClCompile Include="engine\graphics\model_renderer\level_manager.cpp" />
     <ClCompile Include="engine\graphics\shaders.cpp" />
     <ClCompile Include="engine\core\window.cpp" />
     <ClCompile Include="engine\graphics\textures.cpp" />
@@ -177,6 +178,7 @@
     <ClInclude Include="engine\core\timer.h" />
     <ClInclude Include="engine\core\variables.h" />
     <ClInclude Include="engine\graphics\model_renderer\models.h" />
+    <ClInclude Include="engine\graphics\model_renderer\level_manager.h" />
     <ClInclude Include="engine\graphics\render.h" />
     <ClInclude Include="engine\graphics\shaders.h" />
     <ClInclude Include="engine\core\window.h" />
@@ -192,6 +194,8 @@
   <ItemGroup>
     <None Include="resources\shader.frag" />
     <None Include="resources\shader.vert" />
+    <None Include="resources\skybox\sky_shader.frag" />
+    <None Include="resources\skybox\sky_shader.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

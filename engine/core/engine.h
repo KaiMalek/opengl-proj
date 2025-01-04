@@ -10,7 +10,7 @@
 #include "../mesh/mesh.h"
 #include "../world/coords.h"
 #include "../camera/camera.h"
-#include "../graphics/model_renderer/models.h"
+#include "../graphics/model_renderer/level_manager.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -31,7 +31,7 @@ private:
     debug_menu* c_debug_menu;
 
     shader* c_shader;
-    model* c_model;
+    level_manager* c_level_manager;
     coords* c_coord;
     camera* c_camera;
 };

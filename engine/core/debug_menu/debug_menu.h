@@ -7,14 +7,15 @@
 #include <GLFW/glfw3.h>
 
 #include "../variables.h"
+#include "../../camera/camera.h"
 
 class debug_menu {
 public:
     debug_menu(GLFWwindow* window);
     void frame_render();
-    void logic();
     void render();
     ~debug_menu();
 private:
+    camera* c_camera;
 };
 #endif

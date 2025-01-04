@@ -32,24 +32,16 @@ bool engine::initialize(int width, int height, const char* title) {
         return false;
     }
 
-    std::string model_path = "C:\\projects\\opengl-proj\\resources\\world_model.obj";
+    c_level_manager = new level_manager();
 
-    c_model = new model(model_path);
-    if (!c_model) {
-        std::cerr << "Model init failed!" << std::endl;
-        return false;
-    }
+    c_level_manager->load_demo_level();
+
     return true;
 }
 // fuck light, imma straight up get that shit from:
 // https://github.com/VictorGordan/opengl-tutorials/tree/main/YoutubeOpenGL%209%20-%20Lighting TADA! blt
 void engine::run() {
     c_window->fix_resolution();
-
-    glm::mat4 projection = c_camera->get_projection_matrix();
-    glm::mat4 view = c_camera->get_view_matrix();
-
-    glm::mat4 model = glm::mat4(1.0f);
 
     while (!c_window->should_close()) {
         c_time->update();
@@ -64,19 +56,13 @@ void engine::run() {
 
         c_shader->use();
 
-        projection = c_camera->get_projection_matrix();
-        view = c_camera->get_view_matrix();
+        glm::mat4 projection = c_camera->get_projection_matrix();
+        glm::mat4 view = c_camera->get_view_matrix();
 
         c_shader->set_mat4("projection", projection);
         c_shader->set_mat4("view", view);
 
-        // earths rotation axial tilt {0.398, 0, 0.917}
-        // R = (sin(23.5deg), 0, cos(23.5deg)) 23.5 deg relative to the plane of its orbit around the sun
-        model = glm::rotate(glm::mat4(1.0f), glm::radians(variables::cube_angle), glm::vec3(0.398f, 0.917f, 0.f));
-        variables::cube_angle += variables::cube_rotate_speed;
-        c_shader->set_mat4("model", model);
-
-        c_model->draw(*c_shader);
+        c_level_manager->draw_demo_level(*c_shader);
 
         c_debug_menu->render();
 

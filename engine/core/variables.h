@@ -8,7 +8,11 @@ namespace variables {
 	inline static bool was_insert_pressed = false; // for the menu functionality
 	inline bool enable_movement = false;
 
-	// cube settings
+	// world model settings
 	inline float cube_angle = 0.0f;
 	inline float cube_rotate_speed = 0.0f;
+
+	// movement
+	inline float movement_speed = 8.f;
+	inline float mouse_sens = 0.1f;
 }
