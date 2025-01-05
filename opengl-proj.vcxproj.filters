@@ -72,10 +72,10 @@
     <ClCompile Include="engine\graphics\model_renderer\level_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="engine\graphics\weather\fog.cpp">
+    <ClCompile Include="engine\graphics\renderer\renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="engine\graphics\weather\weather_manager.cpp">
+    <ClCompile Include="engine\graphics\renderer\editor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -467,10 +467,10 @@
     <ClInclude Include="dependencies\includes\ft2build.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="engine\graphics\weather\weather_manager.h">
+    <ClInclude Include="engine\graphics\renderer\renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="engine\graphics\weather\fog.h">
+    <ClInclude Include="engine\graphics\renderer\editor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

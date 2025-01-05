@@ -149,11 +149,11 @@
     <ClCompile Include="engine\core\timer.cpp" />
     <ClCompile Include="engine\graphics\model_renderer\models.cpp" />
     <ClCompile Include="engine\graphics\model_renderer\level_manager.cpp" />
+    <ClCompile Include="engine\graphics\renderer\editor.cpp" />
+    <ClCompile Include="engine\graphics\renderer\renderer.cpp" />
     <ClCompile Include="engine\graphics\shaders\shaders.cpp" />
     <ClCompile Include="engine\core\window.cpp" />
     <ClCompile Include="engine\graphics\textures.cpp" />
-    <ClCompile Include="engine\graphics\weather\fog.cpp" />
-    <ClCompile Include="engine\graphics\weather\weather_manager.cpp" />
     <ClCompile Include="engine\mesh\mesh.cpp" />
     <ClCompile Include="engine\coordinates\coords.cpp" />
   </ItemGroup>
@@ -282,11 +282,11 @@
     <ClInclude Include="engine\graphics\model_renderer\models.h" />
     <ClInclude Include="engine\graphics\model_renderer\level_manager.h" />
     <ClInclude Include="engine\graphics\render.h" />
+    <ClInclude Include="engine\graphics\renderer\editor.h" />
+    <ClInclude Include="engine\graphics\renderer\renderer.h" />
     <ClInclude Include="engine\graphics\shaders\shaders.h" />
     <ClInclude Include="engine\core\window.h" />
     <ClInclude Include="engine\graphics\textures.h" />
-    <ClInclude Include="engine\graphics\weather\fog.h" />
-    <ClInclude Include="engine\graphics\weather\weather_manager.h" />
     <ClInclude Include="engine\mesh\mesh.h" />
     <ClInclude Include="engine\coordinates\coords.h" />
   </ItemGroup>

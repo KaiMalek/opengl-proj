@@ -33,7 +33,6 @@ bool engine::initialize(int width, int height, const char* title) {
     }
 
     c_level_manager = new level_manager();
-
     c_level_manager->load_demo_level();
 
     return true;

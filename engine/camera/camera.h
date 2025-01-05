@@ -31,8 +31,6 @@ public:
 
     camera(glm::vec3 position, glm::vec3 up, float fov, float aspect, float near, float far);
 
-    void update_movement();
-
     glm::mat4 get_view_matrix();
     glm::mat4 get_projection_matrix();
 
@@ -44,6 +42,11 @@ public:
     void process_keyboard_input(GLFWwindow* window, double deltaTime);
     void process_mouse_input(GLFWwindow* window);
     void process_input(GLFWwindow* window, double deltaTime);
+    glm::vec3 get_position() const {
+        return m_position;
+    }
+
+private:
 };
 
 #endif
