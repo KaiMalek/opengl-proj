@@ -3,7 +3,7 @@
 
 #include <stb/stb_image.h>
 #include <string>
-#include "shaders.h"
+#include "shaders/shaders.h"
 
 class texture {
 public:

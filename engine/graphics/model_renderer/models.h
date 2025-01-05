@@ -12,7 +12,7 @@
 #include <assimp/postprocess.h>
 
 #include "../../mesh/mesh.h"
-#include "../shaders.h"
+#include "../shaders/shaders.h"
 #include "../../camera/camera.h"
 
 #include <iostream>

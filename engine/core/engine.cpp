@@ -17,7 +17,7 @@ bool engine::initialize(int width, int height, const char* title) {
 
     c_debug_menu = new debug_menu(c_window->get_window());
 
-    c_shader = new shader("C:\\projects\\opengl-proj\\resources\\shader.vert", "C:\\projects\\opengl-proj\\resources\\shader.frag");
+    c_shader = new shader("C:\\projects\\opengl-proj\\engine\\graphics\\shaders\\shader.vert", "C:\\projects\\opengl-proj\\engine\\graphics\\shaders\\shader.frag");
     if (!c_shader) {
         std::cerr << "Shader init failed!" << std::endl;
         return false;

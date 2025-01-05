@@ -111,7 +111,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\projects\opengl-proj\dependencies\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib;assimp-vc143-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib;assimp-vc143-mtd.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -131,7 +131,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\projects\opengl-proj\dependencies\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib;assimp-vc143-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib;assimp-vc143-mtd.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -149,16 +149,118 @@
     <ClCompile Include="engine\core\timer.cpp" />
     <ClCompile Include="engine\graphics\model_renderer\models.cpp" />
     <ClCompile Include="engine\graphics\model_renderer\level_manager.cpp" />
-    <ClCompile Include="engine\graphics\shaders.cpp" />
+    <ClCompile Include="engine\graphics\shaders\shaders.cpp" />
     <ClCompile Include="engine\core\window.cpp" />
     <ClCompile Include="engine\graphics\textures.cpp" />
+    <ClCompile Include="engine\graphics\weather\fog.cpp" />
+    <ClCompile Include="engine\graphics\weather\weather_manager.cpp" />
     <ClCompile Include="engine\mesh\mesh.cpp" />
-    <ClCompile Include="engine\world\coords.cpp" />
+    <ClCompile Include="engine\coordinates\coords.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dependencies\glm_util.h" />
     <ClInclude Include="dependencies\includes\assimp\config.h" />
     <ClInclude Include="dependencies\includes\assimp\revision.h" />
+    <ClInclude Include="dependencies\includes\freetype\config\ftconfig.h" />
+    <ClInclude Include="dependencies\includes\freetype\config\ftheader.h" />
+    <ClInclude Include="dependencies\includes\freetype\config\ftmodule.h" />
+    <ClInclude Include="dependencies\includes\freetype\config\ftoption.h" />
+    <ClInclude Include="dependencies\includes\freetype\config\ftstdlib.h" />
+    <ClInclude Include="dependencies\includes\freetype\config\integer-types.h" />
+    <ClInclude Include="dependencies\includes\freetype\config\mac-support.h" />
+    <ClInclude Include="dependencies\includes\freetype\config\public-macros.h" />
+    <ClInclude Include="dependencies\includes\freetype\freetype.h" />
+    <ClInclude Include="dependencies\includes\freetype\ftadvanc.h" />
+    <ClInclude Include="dependencies\includes\freetype\ftbbox.h" />
+    <ClInclude Include="dependencies\includes\freetype\ftbdf.h" />
+    <ClInclude Include="dependencies\includes\freetype\ftbitmap.h" />
+    <ClInclude Include="dependencies\includes\freetype\ftbzip2.h" />
+    <ClInclude Include="dependencies\includes\freetype\ftcache.h" />
+    <ClInclude Include="dependencies\includes\freetype\ftchapters.h" />
+    <ClInclude Include="dependencies\includes\freetype\ftcid.h" />
+    <ClInclude Include="dependencies\includes\freetype\ftcolor.h" />
+    <ClInclude Include="dependencies\includes\freetype\ftdriver.h" />
+    <ClInclude Include="dependencies\includes\freetype\fterrdef.h" />
+    <ClInclude Include="dependencies\includes\freetype\fterrors.h" />
+    <ClInclude Include="dependencies\includes\freetype\ftfntfmt.h" />
+    <ClInclude Include="dependencies\includes\freetype\ftgasp.h" />
+    <ClInclude Include="dependencies\includes\freetype\ftglyph.h" />
+    <ClInclude Include="dependencies\includes\freetype\ftgxval.h" />
+    <ClInclude Include="dependencies\includes\freetype\ftgzip.h" />
+    <ClInclude Include="dependencies\includes\freetype\ftimage.h" />
+    <ClInclude Include="dependencies\includes\freetype\ftincrem.h" />
+    <ClInclude Include="dependencies\includes\freetype\ftlcdfil.h" />
+    <ClInclude Include="dependencies\includes\freetype\ftlist.h" />
+    <ClInclude Include="dependencies\includes\freetype\ftlogging.h" />
+    <ClInclude Include="dependencies\includes\freetype\ftlzw.h" />
+    <ClInclude Include="dependencies\includes\freetype\ftmac.h" />
+    <ClInclude Include="dependencies\includes\freetype\ftmm.h" />
+    <ClInclude Include="dependencies\includes\freetype\ftmodapi.h" />
+    <ClInclude Include="dependencies\includes\freetype\ftmoderr.h" />
+    <ClInclude Include="dependencies\includes\freetype\ftotval.h" />
+    <ClInclude Include="dependencies\includes\freetype\ftoutln.h" />
+    <ClInclude Include="dependencies\includes\freetype\ftparams.h" />
+    <ClInclude Include="dependencies\includes\freetype\ftpfr.h" />
+    <ClInclude Include="dependencies\includes\freetype\ftrender.h" />
+    <ClInclude Include="dependencies\includes\freetype\ftsizes.h" />
+    <ClInclude Include="dependencies\includes\freetype\ftsnames.h" />
+    <ClInclude Include="dependencies\includes\freetype\ftstroke.h" />
+    <ClInclude Include="dependencies\includes\freetype\ftsynth.h" />
+    <ClInclude Include="dependencies\includes\freetype\ftsystem.h" />
+    <ClInclude Include="dependencies\includes\freetype\fttrigon.h" />
+    <ClInclude Include="dependencies\includes\freetype\fttypes.h" />
+    <ClInclude Include="dependencies\includes\freetype\ftwinfnt.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\autohint.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\cffotypes.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\cfftypes.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\compiler-macros.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\ftcalc.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\ftdebug.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\ftdrv.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\ftgloadr.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\fthash.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\ftmemory.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\ftmmtypes.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\ftobjs.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\ftpsprop.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\ftrfork.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\ftserv.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\ftstream.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\fttrace.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\ftvalid.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\psaux.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\pshints.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\services\svbdf.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\services\svcfftl.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\services\svcid.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\services\svfntfmt.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\services\svgldict.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\services\svgxval.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\services\svkern.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\services\svmetric.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\services\svmm.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\services\svotval.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\services\svpfr.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\services\svpostnm.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\services\svprop.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\services\svpscmap.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\services\svpsinfo.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\services\svsfnt.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\services\svttcmap.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\services\svtteng.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\services\svttglyf.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\services\svwinfnt.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\sfnt.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\svginterface.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\t1types.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\tttypes.h" />
+    <ClInclude Include="dependencies\includes\freetype\internal\wofftypes.h" />
+    <ClInclude Include="dependencies\includes\freetype\otsvg.h" />
+    <ClInclude Include="dependencies\includes\freetype\t1tables.h" />
+    <ClInclude Include="dependencies\includes\freetype\ttnameid.h" />
+    <ClInclude Include="dependencies\includes\freetype\tttables.h" />
+    <ClInclude Include="dependencies\includes\freetype\tttags.h" />
+    <ClInclude Include="dependencies\includes\ft2build.h" />
     <ClInclude Include="dependencies\includes\glad\glad.h" />
     <ClInclude Include="dependencies\includes\GLFW\glfw3.h" />
     <ClInclude Include="dependencies\includes\GLFW\glfw3native.h" />
@@ -180,11 +282,13 @@
     <ClInclude Include="engine\graphics\model_renderer\models.h" />
     <ClInclude Include="engine\graphics\model_renderer\level_manager.h" />
     <ClInclude Include="engine\graphics\render.h" />
-    <ClInclude Include="engine\graphics\shaders.h" />
+    <ClInclude Include="engine\graphics\shaders\shaders.h" />
     <ClInclude Include="engine\core\window.h" />
     <ClInclude Include="engine\graphics\textures.h" />
+    <ClInclude Include="engine\graphics\weather\fog.h" />
+    <ClInclude Include="engine\graphics\weather\weather_manager.h" />
     <ClInclude Include="engine\mesh\mesh.h" />
-    <ClInclude Include="engine\world\coords.h" />
+    <ClInclude Include="engine\coordinates\coords.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\diffuse.jpg" />
@@ -192,8 +296,8 @@
     <Image Include="resources\dev_128x128.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="resources\shader.frag" />
-    <None Include="resources\shader.vert" />
+    <None Include="engine\graphics\shaders\shader.frag" />
+    <None Include="engine\graphics\shaders\shader.vert" />
     <None Include="resources\skybox\sky_shader.frag" />
     <None Include="resources\skybox\sky_shader.vert" />
   </ItemGroup>

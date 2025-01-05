@@ -8,7 +8,7 @@
 #include <glm/glm.hpp>
 #include <glm/detail/type_vec.hpp>
 
-#include "../graphics/shaders.h"
+#include "../graphics/shaders/shaders.h"
 
 #define MAX_BONE_INFLUENCE 4
 

@@ -5,10 +5,10 @@
 #include "timer.h"
 #include "debug_menu/debug_menu.h"
 
-#include "../graphics/shaders.h"
+#include "../graphics/shaders/shaders.h"
 #include "../graphics/textures.h"
 #include "../mesh/mesh.h"
-#include "../world/coords.h"
+#include "../coordinates/coords.h"
 #include "../camera/camera.h"
 #include "../graphics/model_renderer/level_manager.h"
 
