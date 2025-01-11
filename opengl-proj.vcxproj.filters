@@ -33,7 +33,7 @@
     <ClCompile Include="engine\mesh\mesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="engine\graphics\textures.cpp">
+    <ClCompile Include="engine\graphics\textures\textures.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="engine\coordinates\coords.cpp">
@@ -66,19 +66,22 @@
     <ClCompile Include="dependencies\includes\imgui\imgui_widgets.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="engine\graphics\model_renderer\models.cpp">
+    <ClCompile Include="engine\graphics\models\models.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="engine\graphics\model_renderer\level_manager.cpp">
+    <ClCompile Include="engine\graphics\managers\level_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="engine\graphics\renderer\renderer.cpp">
+    <ClCompile Include="engine\graphics\managers\resource_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="engine\graphics\renderer\editor.cpp">
+    <ClCompile Include="engine\graphics\managers\shader_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="engine\graphics\renderer\components.cpp">
+    <ClCompile Include="engine\graphics\managers\texture_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\graphics\textures\quad.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -113,7 +116,7 @@
     <ClInclude Include="engine\mesh\mesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="engine\graphics\textures.h">
+    <ClInclude Include="engine\graphics\textures\textures.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="engine\coordinates\coords.h">
@@ -164,10 +167,10 @@
     <ClInclude Include="dependencies\includes\assimp\revision.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="engine\graphics\model_renderer\models.h">
+    <ClInclude Include="engine\graphics\models\models.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="engine\graphics\model_renderer\level_manager.h">
+    <ClInclude Include="engine\graphics\managers\level_manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="dependencies\includes\freetype\config\ftconfig.h">
@@ -470,13 +473,16 @@
     <ClInclude Include="dependencies\includes\ft2build.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="engine\graphics\renderer\renderer.h">
+    <ClInclude Include="engine\graphics\managers\resource_manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="engine\graphics\renderer\editor.h">
+    <ClInclude Include="engine\graphics\managers\shader_manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="engine\graphics\renderer\components.h">
+    <ClInclude Include="engine\graphics\managers\texture_manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\graphics\textures\quad.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -496,7 +502,5 @@
     <None Include="engine\graphics\shaders\shader.vert" />
     <None Include="resources\skybox\sky_shader.frag" />
     <None Include="resources\skybox\sky_shader.vert" />
-    <None Include="engine\graphics\renderer\text_shader.frag" />
-    <None Include="engine\graphics\renderer\text_shader.vert" />
   </ItemGroup>
 </Project>

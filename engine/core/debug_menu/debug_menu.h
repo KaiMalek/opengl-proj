@@ -12,6 +12,7 @@ class debug_menu {
 public:
     debug_menu(GLFWwindow* window);
     void frame_render();
+    void watermark();
     void render();
     ~debug_menu();
 private:

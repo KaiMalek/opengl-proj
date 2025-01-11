@@ -8,7 +8,7 @@
 
 class shader {
 public:
-    GLuint ID;
+    GLuint shader_id;
 
     shader(const char* vertexPath, const char* fragmentPath);
 
@@ -19,7 +19,7 @@ public:
     void set_vec3(const std::string& name, glm::vec3 color) const;
     void set_mat4(const std::string& name, glm::mat4 mat) const;
     GLuint get_id() const {
-        return ID;
+        return shader_id;
     }
 
 private:

@@ -9,8 +9,8 @@ texture::texture(const std::string& path, const std::string& type) {
 }
 
 void texture::load_texture(const std::string& path) {
-    glGenTextures(1, &ID);
-    glBindTexture(GL_TEXTURE_2D, ID);
+    glGenTextures(1, &texture_id);
+    glBindTexture(GL_TEXTURE_2D, texture_id);
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -37,13 +37,13 @@ void texture::load_texture(const std::string& path) {
 }
 
 void texture::tex_unit(shader& shader, const char* uniform, GLuint unit) {
-    GLuint texUni = glGetUniformLocation(shader.ID, uniform);
+    GLuint texUni = glGetUniformLocation(shader.shader_id, uniform);
     shader.use();
     glUniform1i(texUni, unit);
 }
 
 void texture::bind() const {
-    glBindTexture(GL_TEXTURE_2D, ID);
+    glBindTexture(GL_TEXTURE_2D, texture_id);
 }
 
 void texture::unbind() const {
@@ -51,5 +51,5 @@ void texture::unbind() const {
 }
 
 void texture::shutdown() const {
-    glDeleteTextures(1, &ID);
+    glDeleteTextures(1, &texture_id);
 }

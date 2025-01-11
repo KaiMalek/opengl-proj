@@ -7,72 +7,74 @@ engine::~engine() {
 
 bool engine::initialize(int width, int height, const char* title) {
     c_time = new timer();
-    if (c_time)
+    if (c_time) {
         std::cout << "Timer initialized!" << std::endl;
-    c_time->start();
+        c_time->start();
+    }
 
     c_window = new window();
     if (!c_window->initialize(width, height, title)) {
         std::cerr << "Failed to initialize the window!" << std::endl;
         return false;
-    } else std::cout << "c_window initialized" << std::endl;
+    }
+    std::cout << "Window initialized" << std::endl;
 
     c_debug_menu = new debug_menu(c_window->get_window());
 
-    c_shader = new shader(shader_vertex, shader_fragment);
-    if (!c_shader) {
-        std::cerr << "Shader init failed!" << std::endl;
-        return false;
-    }
-    else {
-        std::cout << "c_shader initialized" << std::endl;
-    }
+    c_resource = &resource_manager::instance();
+    c_resource->load_shader("world_shader", shader_vertex, shader_fragment);
+    //c_resource->load_shader("quad_shader", texture_vertex, texture_fragment);
+    //c_resource->load_texture("dev_texture", "resources/dev-textures/dev_512x512.jpg", "diffuse");
 
-    text_shader = new shader(text_vertex, text_fragment);
-    if (!text_shader) {
-        std::cerr << "Text shader initialization failed!" << std::endl;
-        return false;
-    }
-    std::cout << "Text shader initialized" << std::endl;
+    //c_quad = new quad();
+    //if (!c_quad) {
+    //    std::cerr << "quad pyzdiec" << std::endl;
+    //    return false;
+    //} 
+    //else std::cout << "quad zajebys" << std::endl;
 
-    c_comp = new components(text_vertex, text_fragment);
-    if (!c_comp) {
-        std::cerr << "Components init failed!" << std::endl;
-        return false;
-    }
-    else {
-        std::cout << "c_comp initialized" << std::endl;
-    }
-
-    glm::vec3 camera_pos = glm::vec3(0.0f, 1.0f, 3.0f);
-    glm::vec3 up_direction = glm::vec3(0.0f, 1.0f, 0.0f);
+    glm::vec3 camera_pos(0.0f, 1.0f, 3.0f);
+    glm::vec3 up_direction(0.0f, 1.0f, 0.0f);
 
     c_camera = new camera(camera_pos, up_direction, 45.0f, static_cast<float>(width) / height, 0.1f, 100.0f);
     if (!c_camera) {
         std::cerr << "Camera init failed!" << std::endl;
         return false;
-    } else std::cout << "c_camera initialized" << std::endl;
+    }
+    std::cout << "Camera initialized" << std::endl;
 
     c_level_manager = new level_manager();
     if (!c_level_manager) {
         std::cerr << "Level manager init failed!" << std::endl;
         return false;
-    } else std::cout << "c_level_manager initialized" << std::endl;
+    }
+    std::cout << "Level manager initialized" << std::endl;
 
     c_level_manager->load_demo_level();
 
-    std::cout << "\n" << shader_vertex << std::endl;
+    std::cout << "\nShader paths:" << std::endl;
+    std::cout << shader_vertex << std::endl;
     std::cout << shader_fragment << std::endl;
-    std::cout << text_vertex << std::endl;
-    std::cout << text_fragment << std::endl;
+    std::cout << "Shaders initialized" << std::endl;
 
     return true;
 }
-// fuck light, imma straight up get that shit from:
-// https://github.com/VictorGordan/opengl-tutorials/tree/main/YoutubeOpenGL%209%20-%20Lighting TADA! blt
+
+// Main game loop
 void engine::run() {
     c_window->fix_resolution();
     glfwSetKeyCallback(c_window->get_window(), c_window->fullscreen_callback);
+
+    shader* c_shader = c_resource->get_shader("world_shader");
+    //shader* texture_shader = c_resource->get_shader("quad_shader");
+    //if (!c_shader || !texture_shader) {
+    //    std::cout << "shaders got fucked" << std::endl;
+    //}
+
+    //texture* quad_texture = c_resource->get_texture("dev_texture");
+    //if (!quad_texture) {
+    //    std::cout << "pyzdiec" << std::endl;
+    //}
 
     while (!c_window->should_close()) {
         c_time->update();
@@ -95,11 +97,13 @@ void engine::run() {
 
         c_level_manager->draw_demo_level(*c_shader);
 
-        glm::mat4 text_projection = glm::ortho(5.0f, static_cast<float>(c_window->m_width), static_cast<float>(c_window->m_height), 0.0f, -1.0f, 1.0f);
-        text_shader->use();
-        text_shader->set_mat4("projection", text_projection);
-        // waht hte fuck
-        c_comp->text("fuck this shit", 10.0f, 10.0f, 1.0f, glm::vec3(1.0f, 1.0f, 1.0f));
+        // testing resource manager for texture binding on a random object
+
+        //quad_texture->bind();
+        //quad_texture->tex_unit(*texture_shader, "texture1", 0);
+        //
+        //texture_shader->use();
+        //c_quad->render(texture_shader->shader_id);
 
         c_debug_menu->render();
 
@@ -108,5 +112,5 @@ void engine::run() {
 }
 
 void engine::shutdown() {
-    c_window->shutdown();
+     c_window->shutdown();
 }

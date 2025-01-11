@@ -47,19 +47,19 @@ shader::shader(const char* vertexPath, const char* fragmentPath) {
     glCompileShader(fragment);
     check_compile_errors(fragment, "FRAGMENT");
 
-    ID = glCreateProgram();
-    glAttachShader(ID, vertex);
-    glAttachShader(ID, fragment);
-    glLinkProgram(ID);
-    check_compile_errors(ID, "PROGRAM");
+    shader_id = glCreateProgram();
+    glAttachShader(shader_id, vertex);
+    glAttachShader(shader_id, fragment);
+    glLinkProgram(shader_id);
+    check_compile_errors(shader_id, "PROGRAM");
 
     glDeleteShader(vertex);
     glDeleteShader(fragment);
 }
 
 void shader::use() const {
-    if (ID != 0) {
-        glUseProgram(ID);
+    if (shader_id != 0) {
+        glUseProgram(shader_id);
     }
     else {
         std::cerr << "Shader program not initialized correctly!" << std::endl;
@@ -67,23 +67,23 @@ void shader::use() const {
 }
 
 void shader::set_bool(const std::string& name, bool value) const {
-    glUniform1i(glGetUniformLocation(ID, name.c_str()), (int)value);
+    glUniform1i(glGetUniformLocation(shader_id, name.c_str()), (int)value);
 }
 
 void shader::set_int(const std::string& name, int value) const {
-    glUniform1i(glGetUniformLocation(ID, name.c_str()), value);
+    glUniform1i(glGetUniformLocation(shader_id, name.c_str()), value);
 }
 
 void shader::set_float(const std::string& name, float value) const {
-    glUniform1f(glGetUniformLocation(ID, name.c_str()), value);
+    glUniform1f(glGetUniformLocation(shader_id, name.c_str()), value);
 }
 
 void shader::set_vec3(const std::string& name, glm::vec3 color) const {
-    glUniform3f(glGetUniformLocation(ID, name.c_str()), color.x, color.y, color.z);
+    glUniform3f(glGetUniformLocation(shader_id, name.c_str()), color.x, color.y, color.z);
 }
 
 void shader::set_mat4(const std::string& name, glm::mat4 mat) const {
-    glUniformMatrix4fv(glGetUniformLocation(ID, name.c_str()), 1, GL_FALSE, glm::value_ptr(mat));
+    glUniformMatrix4fv(glGetUniformLocation(shader_id, name.c_str()), 1, GL_FALSE, glm::value_ptr(mat));
 }
 
 void shader::check_compile_errors(GLuint shader, const std::string& type) const {

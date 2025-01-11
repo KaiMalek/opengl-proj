@@ -3,11 +3,11 @@
 
 #include <stb/stb_image.h>
 #include <string>
-#include "shaders/shaders.h"
+#include "../shaders/shaders.h"
 
 class texture {
 public:
-    GLuint ID;
+    GLuint texture_id;
     std::string type;
     std::string path;
 
@@ -17,6 +17,10 @@ public:
     void bind() const;
     void unbind() const;
     void shutdown() const;
+    GLuint get_id() const {
+        return texture_id;
+    }
+
 };
 
 #endif

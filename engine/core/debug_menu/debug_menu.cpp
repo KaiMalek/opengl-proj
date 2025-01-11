@@ -28,6 +28,8 @@ void debug_menu::render() {
 }
 // NOTE: menu_open logic is done in camera::process_input (camera.cpp) (for anyone wondering)
 void debug_menu::frame_render() {
+    watermark();
+
     if (!variables::menu_open)
         return;
 
@@ -83,6 +85,26 @@ void debug_menu::frame_render() {
 
         break;
     }
+
+    ImGui::End();
+}
+// just gonna do styles.h later on for cooler debug menus (habit from game hacking)
+void setup_styles() {
+    ImGuiStyle& style = ImGui::GetStyle();
+
+    style.WindowBorderSize = 0.f;
+}
+
+void debug_menu::watermark() {
+    setup_styles();
+
+    ImGui::SetNextWindowPos(ImVec2{ 10.f, 10.f }, ImGuiCond_Once);
+    ImGui::SetNextWindowSize(ImVec2{ 100.f, 20.f }, ImGuiCond_Once);
+    ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.08f, 0.08f, 0.08f, .00f));
+    
+    ImGui::Begin("debug_watermark", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
+    ImGui::PopStyleColor();
+    ImGui::Text("FPS: %.1f", ImGui::GetIO().Framerate);
 
     ImGui::End();
 }

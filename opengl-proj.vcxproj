@@ -147,16 +147,17 @@
     <ClCompile Include="engine\core\debug_menu\debug_menu.cpp" />
     <ClCompile Include="engine\core\engine.cpp" />
     <ClCompile Include="engine\core\timer.cpp" />
-    <ClCompile Include="engine\graphics\model_renderer\models.cpp" />
-    <ClCompile Include="engine\graphics\model_renderer\level_manager.cpp" />
-    <ClCompile Include="engine\graphics\renderer\components.cpp" />
-    <ClCompile Include="engine\graphics\renderer\editor.cpp" />
-    <ClCompile Include="engine\graphics\renderer\renderer.cpp" />
+    <ClCompile Include="engine\graphics\managers\texture_manager.cpp" />
+    <ClCompile Include="engine\graphics\models\models.cpp" />
+    <ClCompile Include="engine\graphics\managers\level_manager.cpp" />
     <ClCompile Include="engine\graphics\shaders\shaders.cpp" />
     <ClCompile Include="engine\core\window.cpp" />
-    <ClCompile Include="engine\graphics\textures.cpp" />
+    <ClCompile Include="engine\graphics\managers\shader_manager.cpp" />
+    <ClCompile Include="engine\graphics\textures\quad.cpp" />
+    <ClCompile Include="engine\graphics\textures\textures.cpp" />
     <ClCompile Include="engine\mesh\mesh.cpp" />
     <ClCompile Include="engine\coordinates\coords.cpp" />
+    <ClCompile Include="engine\graphics\managers\resource_manager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dependencies\glm_util.h" />
@@ -275,22 +276,23 @@
     <ClInclude Include="dependencies\includes\imgui\imstb_truetype.h" />
     <ClInclude Include="dependencies\includes\KHR\khrplatform.h" />
     <ClInclude Include="dependencies\includes\stb\stb_image.h" />
+    <ClInclude Include="engine\graphics\managers\texture_manager.h" />
     <ClInclude Include="engine\camera\camera.h" />
     <ClInclude Include="engine\core\debug_menu\debug_menu.h" />
     <ClInclude Include="engine\core\engine.h" />
     <ClInclude Include="engine\core\timer.h" />
     <ClInclude Include="engine\core\variables.h" />
-    <ClInclude Include="engine\graphics\model_renderer\models.h" />
-    <ClInclude Include="engine\graphics\model_renderer\level_manager.h" />
+    <ClInclude Include="engine\graphics\models\models.h" />
+    <ClInclude Include="engine\graphics\managers\level_manager.h" />
     <ClInclude Include="engine\graphics\render.h" />
-    <ClInclude Include="engine\graphics\renderer\components.h" />
-    <ClInclude Include="engine\graphics\renderer\editor.h" />
-    <ClInclude Include="engine\graphics\renderer\renderer.h" />
     <ClInclude Include="engine\graphics\shaders\shaders.h" />
     <ClInclude Include="engine\core\window.h" />
-    <ClInclude Include="engine\graphics\textures.h" />
+    <ClInclude Include="engine\graphics\managers\shader_manager.h" />
+    <ClInclude Include="engine\graphics\textures\quad.h" />
+    <ClInclude Include="engine\graphics\textures\textures.h" />
     <ClInclude Include="engine\mesh\mesh.h" />
     <ClInclude Include="engine\coordinates\coords.h" />
+    <ClInclude Include="engine\graphics\managers\resource_manager.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\diffuse.jpg" />
@@ -298,8 +300,6 @@
     <Image Include="resources\dev_128x128.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="engine\graphics\renderer\text_shader.frag" />
-    <None Include="engine\graphics\renderer\text_shader.vert" />
     <None Include="engine\graphics\shaders\shader.frag" />
     <None Include="engine\graphics\shaders\shader.vert" />
     <None Include="resources\skybox\sky_shader.frag" />
