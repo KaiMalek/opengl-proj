@@ -19,17 +19,30 @@ bool engine::initialize(int width, int height, const char* title) {
 
     c_debug_menu = new debug_menu(c_window->get_window());
 
-    c_shader = new shader("engine/graphics/shaders/shader.vert", "engine/graphics/shaders/shader.frag");
+    c_shader = new shader(shader_vertex, shader_fragment);
     if (!c_shader) {
         std::cerr << "Shader init failed!" << std::endl;
         return false;
-    } else std::cout << "c_shader initialized" << std::endl;
+    }
+    else {
+        std::cout << "c_shader initialized" << std::endl;
+    }
 
-    c_comp = new components();
+    text_shader = new shader(text_vertex, text_fragment);
+    if (!text_shader) {
+        std::cerr << "Text shader initialization failed!" << std::endl;
+        return false;
+    }
+    std::cout << "Text shader initialized" << std::endl;
+
+    c_comp = new components(text_vertex, text_fragment);
     if (!c_comp) {
         std::cerr << "Components init failed!" << std::endl;
         return false;
-    } else std::cout << "c_comp initialized" << std::endl;
+    }
+    else {
+        std::cout << "c_comp initialized" << std::endl;
+    }
 
     glm::vec3 camera_pos = glm::vec3(0.0f, 1.0f, 3.0f);
     glm::vec3 up_direction = glm::vec3(0.0f, 1.0f, 0.0f);
@@ -48,7 +61,10 @@ bool engine::initialize(int width, int height, const char* title) {
 
     c_level_manager->load_demo_level();
 
-    glfwSetKeyCallback(c_window->get_window(), c_window->fullscreen_callback);
+    std::cout << "\n" << shader_vertex << std::endl;
+    std::cout << shader_fragment << std::endl;
+    std::cout << text_vertex << std::endl;
+    std::cout << text_fragment << std::endl;
 
     return true;
 }
@@ -56,6 +72,7 @@ bool engine::initialize(int width, int height, const char* title) {
 // https://github.com/VictorGordan/opengl-tutorials/tree/main/YoutubeOpenGL%209%20-%20Lighting TADA! blt
 void engine::run() {
     c_window->fix_resolution();
+    glfwSetKeyCallback(c_window->get_window(), c_window->fullscreen_callback);
 
     while (!c_window->should_close()) {
         c_time->update();
@@ -78,6 +95,10 @@ void engine::run() {
 
         c_level_manager->draw_demo_level(*c_shader);
 
+        glm::mat4 text_projection = glm::ortho(5.0f, static_cast<float>(c_window->m_width), static_cast<float>(c_window->m_height), 0.0f, -1.0f, 1.0f);
+        text_shader->use();
+        text_shader->set_mat4("projection", text_projection);
+        // waht hte fuck
         c_comp->text("fuck this shit", 10.0f, 10.0f, 1.0f, glm::vec3(1.0f, 1.0f, 1.0f));
 
         c_debug_menu->render();

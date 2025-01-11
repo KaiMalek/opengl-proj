@@ -73,6 +73,15 @@ void debug_menu::frame_render() {
         //ImGui::SliderFloat("Movements speed", &c_camera->m_movement_speed, 0.0f, 10.0f, "%.2f");
         //ImGui::SliderFloat("Mouse sensitivity", &c_camera->m_mouse_sensitivity, 0.0f, 1.0f, "%.2f");
         break;
+
+    case 2: // shit loaded
+
+        //ImGui::Text("%c", c_engine->shader_vertex);
+        //ImGui::Text("%c", c_engine->shader_fragment);
+        //ImGui::Text("%c", c_engine->text_vertex);
+        //ImGui::Text("%c", c_engine->text_fragment);
+
+        break;
     }
 
     ImGui::End();

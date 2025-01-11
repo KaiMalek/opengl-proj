@@ -30,12 +30,20 @@ public:
 
 
     float last_frame = 0.0f;
+
+    // vertex/fragment paths
+    const char* text_vertex = "engine/graphics/renderer/text_shader.vert";
+    const char* text_fragment = "engine/graphics/renderer/text_shader.frag";
+
+    const char* shader_vertex = "engine/graphics/shaders/shader.vert";
+    const char* shader_fragment = "engine/graphics/shaders/shader.frag";
 private:
     window* c_window;
     timer* c_time;
     debug_menu* c_debug_menu;
 
     shader* c_shader;
+    shader* text_shader;
     components* c_comp;
     level_manager* c_level_manager;
 

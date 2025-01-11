@@ -1,8 +1,8 @@
 #include "components.h"
 #include <iostream>
 
-components::components() {
-    initialize_text_rendering();
+components::components(const char* vertex, const char* fragment) {
+    initialize_text_rendering(vertex, fragment);
 }
 
 components::~components() {
@@ -10,28 +10,25 @@ components::~components() {
     glDeleteVertexArrays(1, &VAO);
 }
 
-void components::initialize_text_rendering() {
-    text_shader = new shader("engine/graphics/renderer/text_shader.vert", "engine/graphics/renderer/text_shader.frag");
+void components::initialize_text_rendering(const char* vertex, const char* fragment) {
+    text_shader = new shader(vertex, fragment);
     if (!text_shader) {
         std::cout << "Error: Text shader initialization failed." << std::endl;
         return;
     }
 
+    unsigned int VAO, VBO;
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
-
     glBindVertexArray(VAO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 6 * 4, nullptr, GL_DYNAMIC_DRAW);
-
-    glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 6 * 4, NULL, GL_DYNAMIC_DRAW);
     glEnableVertexAttribArray(0);
-
+    glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), 0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
 
-    load_font("C:\\projects\\opengl-proj\\resources\\fonts\\Antonio-Bold.ttf");
+    load_font("resources/fonts/Antonio-Bold.ttf");
 }
 
 void components::load_font(const std::string& font_path) {
@@ -89,42 +86,43 @@ void components::load_font(const std::string& font_path) {
     FT_Done_Face(face);
     FT_Done_FreeType(ft);
 }
-// i fkn can not, im going insane doing this shit
+
 void components::text(const std::string& text, float x, float y, float scale, glm::vec3 color) {
     text_shader->use();
-
     text_shader->set_vec3("textColor", color);
 
     glActiveTexture(GL_TEXTURE0);
     glBindVertexArray(VAO);
 
-    for (const char& c : text) {
-        Character ch = Characters[c];
+    std::string::const_iterator c;
+    for (c = text.begin(); c != text.end(); c++)
+    {
+        Character ch = Characters[*c];
 
         float xpos = x + ch.bearing.x * scale;
         float ypos = y - (ch.size.y - ch.bearing.y) * scale;
+
         float w = ch.size.x * scale;
         float h = ch.size.y * scale;
 
         float vertices[6][4] = {
-            { xpos,     ypos + h,   0.0f, 1.0f },
-            { xpos,     ypos,       0.0f, 0.0f },
-            { xpos + w, ypos,       1.0f, 0.0f },
+            { xpos,     ypos + h,   0.0f, 0.0f },
+            { xpos,     ypos,       0.0f, 1.0f },
+            { xpos + w, ypos,       1.0f, 1.0f },
 
-            { xpos,     ypos + h,   0.0f, 1.0f },
-            { xpos + w, ypos,       1.0f, 0.0f },
-            { xpos + w, ypos + h,   1.0f, 1.0f }
+            { xpos,     ypos + h,   0.0f, 0.0f },
+            { xpos + w, ypos,       1.0f, 1.0f },
+            { xpos + w, ypos + h,   1.0f, 0.0f }
         };
 
         glBindTexture(GL_TEXTURE_2D, ch.texture_id);
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
         glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
-
         glDrawArrays(GL_TRIANGLES, 0, 6);
 
         x += (ch.advance >> 6) * scale;
     }
-
     glBindVertexArray(0);
+    glBindTexture(GL_TEXTURE_2D, 0);
 }

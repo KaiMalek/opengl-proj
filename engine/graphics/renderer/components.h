@@ -30,17 +30,19 @@ struct Character {
 
 class components {
 public:
-    components();
+    components(const char* vertex, const char* fragment);
     ~components();
 
-    void initialize_text_rendering();
-    void load_font(const std::string& font_path);
     void text(const std::string& text, float x, float y, float scale, glm::vec3 color);
 
 private:
-    shader* text_shader;
+    void initialize_text_rendering(const char* vertex, const char* fragment);
+    void load_font(const std::string& font_path);
+
     GLuint VAO, VBO;
-    std::map<char, Character> Characters;
+    std::unordered_map<char, Character> Characters;
+    shader* text_shader;
 };
+
 
 #endif

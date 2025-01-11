@@ -58,7 +58,12 @@ shader::shader(const char* vertexPath, const char* fragmentPath) {
 }
 
 void shader::use() const {
-    glUseProgram(ID);
+    if (ID != 0) {
+        glUseProgram(ID);
+    }
+    else {
+        std::cerr << "Shader program not initialized correctly!" << std::endl;
+    }
 }
 
 void shader::set_bool(const std::string& name, bool value) const {
