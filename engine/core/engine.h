@@ -7,10 +7,14 @@
 
 #include "../graphics/shaders/shaders.h"
 #include "../graphics/textures.h"
-#include "../mesh/mesh.h"
-#include "../coordinates/coords.h"
-#include "../camera/camera.h"
 #include "../graphics/model_renderer/level_manager.h"
+#include "../graphics/renderer/components.h"
+
+#include "../mesh/mesh.h"
+
+#include "../coordinates/coords.h"
+
+#include "../camera/camera.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -24,6 +28,7 @@ public:
     void run();
     void shutdown();
 
+
     float last_frame = 0.0f;
 private:
     window* c_window;
@@ -31,7 +36,9 @@ private:
     debug_menu* c_debug_menu;
 
     shader* c_shader;
+    components* c_comp;
     level_manager* c_level_manager;
+
     coords* c_coord;
     camera* c_camera;
 };

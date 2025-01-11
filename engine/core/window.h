@@ -28,9 +28,16 @@ public:
 
     static glm::mat4 get_projection_matrix();
 
+    static void fullscreen_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
+
     static int m_width, m_height;
 private:
     static GLFWwindow* m_window;
+    // didnt know c++ 17+ we had to do static inline for this kind of shit
+    // weird practice but okay...
+    static inline GLFWmonitor* monitor;
+
+    static inline bool is_fullscreen = false;
     static float m_aspect_ratio;
     static glm::mat4 m_projection_matrix;
 

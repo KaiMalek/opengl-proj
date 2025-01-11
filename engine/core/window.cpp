@@ -99,3 +99,24 @@ float window::get_aspect_ratio() {
 glm::mat4 window::get_projection_matrix() {
     return m_projection_matrix;
 }
+
+void window::fullscreen_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
+    int width, height;
+    glfwGetWindowSize(window, &width, &height);
+
+    static int original_width = WIN_WIDTH, original_height = WIN_HEIGHT;
+
+    if (key == GLFW_KEY_F11 && action == GLFW_PRESS) {
+        if (is_fullscreen) {
+            glfwSetWindowMonitor(window, nullptr, 100, 100, original_width, original_height, GLFW_DONT_CARE);
+            is_fullscreen = false;
+        }
+        else {
+            glfwGetWindowSize(window, &original_width, &original_height);
+
+            const GLFWvidmode* mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+            glfwSetWindowMonitor(window, glfwGetPrimaryMonitor(), 0, 0, mode->width, mode->height, mode->refreshRate);
+            is_fullscreen = true;
+        }
+    }
+}

@@ -7,21 +7,29 @@ engine::~engine() {
 
 bool engine::initialize(int width, int height, const char* title) {
     c_time = new timer();
+    if (c_time)
+        std::cout << "Timer initialized!" << std::endl;
     c_time->start();
 
     c_window = new window();
     if (!c_window->initialize(width, height, title)) {
         std::cerr << "Failed to initialize the window!" << std::endl;
         return false;
-    }
+    } else std::cout << "c_window initialized" << std::endl;
 
     c_debug_menu = new debug_menu(c_window->get_window());
 
-    c_shader = new shader("C:\\projects\\opengl-proj\\engine\\graphics\\shaders\\shader.vert", "C:\\projects\\opengl-proj\\engine\\graphics\\shaders\\shader.frag");
+    c_shader = new shader("engine/graphics/shaders/shader.vert", "engine/graphics/shaders/shader.frag");
     if (!c_shader) {
         std::cerr << "Shader init failed!" << std::endl;
         return false;
-    }
+    } else std::cout << "c_shader initialized" << std::endl;
+
+    c_comp = new components();
+    if (!c_comp) {
+        std::cerr << "Components init failed!" << std::endl;
+        return false;
+    } else std::cout << "c_comp initialized" << std::endl;
 
     glm::vec3 camera_pos = glm::vec3(0.0f, 1.0f, 3.0f);
     glm::vec3 up_direction = glm::vec3(0.0f, 1.0f, 0.0f);
@@ -30,10 +38,17 @@ bool engine::initialize(int width, int height, const char* title) {
     if (!c_camera) {
         std::cerr << "Camera init failed!" << std::endl;
         return false;
-    }
+    } else std::cout << "c_camera initialized" << std::endl;
 
     c_level_manager = new level_manager();
+    if (!c_level_manager) {
+        std::cerr << "Level manager init failed!" << std::endl;
+        return false;
+    } else std::cout << "c_level_manager initialized" << std::endl;
+
     c_level_manager->load_demo_level();
+
+    glfwSetKeyCallback(c_window->get_window(), c_window->fullscreen_callback);
 
     return true;
 }
@@ -62,6 +77,8 @@ void engine::run() {
         c_shader->set_mat4("view", view);
 
         c_level_manager->draw_demo_level(*c_shader);
+
+        c_comp->text("fuck this shit", 10.0f, 10.0f, 1.0f, glm::vec3(1.0f, 1.0f, 1.0f));
 
         c_debug_menu->render();
 

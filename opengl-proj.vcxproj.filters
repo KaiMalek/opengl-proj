@@ -78,6 +78,9 @@
     <ClCompile Include="engine\graphics\renderer\editor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="engine\graphics\renderer\components.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dependencies\includes\glad\glad.h">
@@ -473,6 +476,9 @@
     <ClInclude Include="engine\graphics\renderer\editor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="engine\graphics\renderer\components.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\dev_128x128.jpg">
@@ -490,5 +496,7 @@
     <None Include="engine\graphics\shaders\shader.vert" />
     <None Include="resources\skybox\sky_shader.frag" />
     <None Include="resources\skybox\sky_shader.vert" />
+    <None Include="engine\graphics\renderer\text_shader.frag" />
+    <None Include="engine\graphics\renderer\text_shader.vert" />
   </ItemGroup>
 </Project>

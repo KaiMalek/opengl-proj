@@ -21,6 +21,7 @@ private:
 
     model* c_model_world;
     model* c_model_basement;
+    model* c_model_simon;
 };
 
 

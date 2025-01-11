@@ -149,6 +149,7 @@
     <ClCompile Include="engine\core\timer.cpp" />
     <ClCompile Include="engine\graphics\model_renderer\models.cpp" />
     <ClCompile Include="engine\graphics\model_renderer\level_manager.cpp" />
+    <ClCompile Include="engine\graphics\renderer\components.cpp" />
     <ClCompile Include="engine\graphics\renderer\editor.cpp" />
     <ClCompile Include="engine\graphics\renderer\renderer.cpp" />
     <ClCompile Include="engine\graphics\shaders\shaders.cpp" />
@@ -282,6 +283,7 @@
     <ClInclude Include="engine\graphics\model_renderer\models.h" />
     <ClInclude Include="engine\graphics\model_renderer\level_manager.h" />
     <ClInclude Include="engine\graphics\render.h" />
+    <ClInclude Include="engine\graphics\renderer\components.h" />
     <ClInclude Include="engine\graphics\renderer\editor.h" />
     <ClInclude Include="engine\graphics\renderer\renderer.h" />
     <ClInclude Include="engine\graphics\shaders\shaders.h" />
@@ -296,6 +298,8 @@
     <Image Include="resources\dev_128x128.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="engine\graphics\renderer\text_shader.frag" />
+    <None Include="engine\graphics\renderer\text_shader.vert" />
     <None Include="engine\graphics\shaders\shader.frag" />
     <None Include="engine\graphics\shaders\shader.vert" />
     <None Include="resources\skybox\sky_shader.frag" />
