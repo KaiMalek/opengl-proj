@@ -7,7 +7,6 @@ namespace variables {
 	//console
 	inline bool console_visible = false;
 	inline bool was_grave_pressed = false;
-	inline std::string console_command;
 
 	// menu
 	inline bool menu_open = false;

@@ -1,6 +1,8 @@
 #include "engine.h"
 #include <iostream>
 
+// etymology engine
+
 engine::~engine() {
     shutdown();
 }
@@ -123,8 +125,20 @@ void engine::run() {
 }
 
 void engine::process_console() {
-    console::instance().register_command("exit", [this]() { shutdown(); });
-    console::instance().register_command("clear_log", []() { console::instance().clear(); });
+    console::instance().add_command("exit", [this]() {
+        console::instance().log("exit", log_type::INFO);
+        shutdown();
+        });
+
+    console::instance().add_command("clear", []() {
+        console::instance().log("clear", log_type::INFO);
+        console::instance().clear();
+        });
+
+    console::instance().add_command("help", []() {
+        console::instance().log("help", log_type::INFO);
+        console::instance().log("Etymology Engine commands: exit, clear, help.", log_type::INFO);
+        });
 }
 
 void engine::shutdown() {
