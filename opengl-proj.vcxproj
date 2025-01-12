@@ -144,6 +144,7 @@
     <ClCompile Include="dependencies\includes\imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="dependencies\includes\imgui\imgui_widgets.cpp" />
     <ClCompile Include="engine\camera\camera.cpp" />
+    <ClCompile Include="engine\core\debug_menu\console.cpp" />
     <ClCompile Include="engine\core\debug_menu\debug_menu.cpp" />
     <ClCompile Include="engine\core\engine.cpp" />
     <ClCompile Include="engine\core\timer.cpp" />
@@ -276,6 +277,7 @@
     <ClInclude Include="dependencies\includes\imgui\imstb_truetype.h" />
     <ClInclude Include="dependencies\includes\KHR\khrplatform.h" />
     <ClInclude Include="dependencies\includes\stb\stb_image.h" />
+    <ClInclude Include="engine\core\debug_menu\console.h" />
     <ClInclude Include="engine\graphics\managers\texture_manager.h" />
     <ClInclude Include="engine\camera\camera.h" />
     <ClInclude Include="engine\core\debug_menu\debug_menu.h" />

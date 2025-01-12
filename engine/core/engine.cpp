@@ -57,6 +57,17 @@ bool engine::initialize(int width, int height, const char* title) {
     std::cout << shader_fragment << std::endl;
     std::cout << "Shaders initialized" << std::endl;
 
+    c_console->instance().log("Timer initialized");
+    c_console->instance().log("Window initialized");
+    c_console->instance().log("Resource manager initialized");
+    c_console->instance().log("Camera initialized");
+    c_console->instance().log("Level manager initialized");
+    c_console->instance().log("Shader paths:");
+    c_console->instance().log(shader_vertex);
+    c_console->instance().log(shader_fragment);
+    c_console->instance().log("Shaders initialized");
+    c_console->instance().log("world_shader loaded");
+
     return true;
 }
 
@@ -109,6 +120,11 @@ void engine::run() {
 
         glfwSwapBuffers(c_window->get_window());
     }
+}
+
+void engine::process_console() {
+    console::instance().register_command("exit", [this]() { shutdown(); });
+    console::instance().register_command("clear_log", []() { console::instance().clear(); });
 }
 
 void engine::shutdown() {

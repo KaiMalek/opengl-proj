@@ -24,6 +24,7 @@ public:
 
     bool initialize(int width, int height, const char* title);
     void run();
+    void process_console();
     void shutdown();
 
     // vertex/fragment paths
@@ -36,6 +37,7 @@ private:
     window* c_window;
     timer* c_time;
     debug_menu* c_debug_menu;
+    console* c_console;
 
     quad* c_quad;
 

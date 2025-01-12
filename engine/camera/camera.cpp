@@ -123,4 +123,22 @@ void camera::process_input(GLFWwindow* window, double deltaTime) {
         process_keyboard_input(window, deltaTime);
         process_mouse_input(window);
     }
+
+    if (glfwGetKey(window, GLFW_KEY_GRAVE_ACCENT) == GLFW_PRESS && !variables::was_grave_pressed) {
+        variables::console_visible = !variables::console_visible;
+
+        if (variables::console_visible) {
+            glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+            glfwGetCursorPos(window, &lastX, &lastY);
+        }
+        else {
+            glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+            glfwSetCursorPos(window, lastX, lastY);
+        }
+
+        variables::was_grave_pressed = true;
+    }
+    else if (glfwGetKey(window, GLFW_KEY_GRAVE_ACCENT) == GLFW_RELEASE) {
+        variables::was_grave_pressed = false;
+    }
 }

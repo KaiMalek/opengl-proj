@@ -4,6 +4,12 @@
 // old habbit from csgo cheats :O
 // for future debug menu variables
 namespace variables {
+	//console
+	inline bool console_visible = false;
+	inline bool was_grave_pressed = false;
+	inline std::string console_command;
+
+	// menu
 	inline bool menu_open = false;
 	inline static bool was_insert_pressed = false; // for the menu functionality
 	inline bool enable_movement = false;

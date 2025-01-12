@@ -84,6 +84,9 @@
     <ClCompile Include="engine\graphics\textures\quad.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="engine\core\debug_menu\console.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dependencies\includes\glad\glad.h">
@@ -483,6 +486,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="engine\graphics\textures\quad.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\core\debug_menu\console.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
