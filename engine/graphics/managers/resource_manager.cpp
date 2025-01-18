@@ -6,6 +6,7 @@ resource_manager& resource_manager::instance() {
     return instance;
 }
 
+// shaders
 shader* resource_manager::load_shader(const std::string& name, const char* vertex_path, const char* fragment_path) {
     return shader_manager::instance().load_shader(name, vertex_path, fragment_path);
 }
@@ -14,6 +15,7 @@ shader* resource_manager::get_shader(const std::string& name) const {
     return shader_manager::instance().get_shader(name);
 }
 
+// textures
 texture* resource_manager::load_texture(const std::string& name, const char* texture_path, const std::string& type) {
     return texture_manager::instance().load_texture(name, texture_path, type);
 }

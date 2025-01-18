@@ -10,7 +10,7 @@ engine::~engine() {
 bool engine::initialize(int width, int height, const char* title) {
     c_time = new timer();
     if (c_time) {
-        std::cout << "Timer initialized!" << std::endl;
+        c_console->instance().log("Timer initialized");
         c_time->start();
     }
 
@@ -19,21 +19,13 @@ bool engine::initialize(int width, int height, const char* title) {
         std::cerr << "Failed to initialize the window!" << std::endl;
         return false;
     }
-    std::cout << "Window initialized" << std::endl;
+    c_console->instance().log("Window initialized");
 
     c_debug_menu = new debug_menu(c_window->get_window());
 
     c_resource = &resource_manager::instance();
     c_resource->load_shader("world_shader", shader_vertex, shader_fragment);
-    //c_resource->load_shader("quad_shader", texture_vertex, texture_fragment);
-    //c_resource->load_texture("dev_texture", "resources/dev-textures/dev_512x512.jpg", "diffuse");
-
-    //c_quad = new quad();
-    //if (!c_quad) {
-    //    std::cerr << "quad pyzdiec" << std::endl;
-    //    return false;
-    //} 
-    //else std::cout << "quad zajebys" << std::endl;
+    c_console->instance().log("Resource manager initialized");
 
     glm::vec3 camera_pos(0.0f, 1.0f, 3.0f);
     glm::vec3 up_direction(0.0f, 1.0f, 0.0f);
@@ -43,58 +35,54 @@ bool engine::initialize(int width, int height, const char* title) {
         std::cerr << "Camera init failed!" << std::endl;
         return false;
     }
-    std::cout << "Camera initialized" << std::endl;
+    c_console->instance().log("Camera initialized");
 
     c_level_manager = new level_manager();
     if (!c_level_manager) {
         std::cerr << "Level manager init failed!" << std::endl;
         return false;
     }
-    std::cout << "Level manager initialized" << std::endl;
+    c_console->instance().log("Level manager initialized");
+
+    c_audio = new audio();
+    if (!c_audio) {
+        std::cerr << "Audio init failed!" << std::endl;
+        return false;
+    }
+    c_audio->init();
+    c_console->instance().log("Audio initialized");
 
     c_level_manager->load_demo_level();
-
-    std::cout << "\nShader paths:" << std::endl;
-    std::cout << shader_vertex << std::endl;
-    std::cout << shader_fragment << std::endl;
-    std::cout << "Shaders initialized" << std::endl;
-
-    c_console->instance().log("Timer initialized");
-    c_console->instance().log("Window initialized");
-    c_console->instance().log("Resource manager initialized");
-    c_console->instance().log("Camera initialized");
-    c_console->instance().log("Level manager initialized");
-    c_console->instance().log("Shader paths:");
-    c_console->instance().log(shader_vertex);
-    c_console->instance().log(shader_fragment);
-    c_console->instance().log("Shaders initialized");
-    c_console->instance().log("world_shader loaded");
+    if (c_level_manager) {
+        c_console->instance().log("Shader paths:");
+        c_console->instance().log(shader_vertex);
+        c_console->instance().log(shader_fragment);
+        c_console->instance().log("Shaders initialized");
+        c_console->instance().log("world_shader loaded");
+    }
 
     return true;
 }
 
-// Main game loop
 void engine::run() {
     c_window->fix_resolution();
     glfwSetKeyCallback(c_window->get_window(), c_window->fullscreen_callback);
 
     shader* c_shader = c_resource->get_shader("world_shader");
-    //shader* texture_shader = c_resource->get_shader("quad_shader");
-    //if (!c_shader || !texture_shader) {
-    //    std::cout << "shaders got fucked" << std::endl;
-    //}
-
-    //texture* quad_texture = c_resource->get_texture("dev_texture");
-    //if (!quad_texture) {
-    //    std::cout << "pyzdiec" << std::endl;
-    //}
-
+ 
     while (!c_window->should_close()) {
         c_time->update();
         double delta_time = c_time->get_delta_time();
 
         c_window->poll_events();
         c_camera->process_input(c_window->get_window(), delta_time);
+
+        // would be perfect for a radio station chattering some gibberish on a coffee table outside
+        //c_audio->play_3d_audio("background-cof.wav", glm::vec3(0.f, 0.f, 0.f), 0.01, 10.5f, 0.f);
+        //glm::vec3 camera_pos = c_camera->get_position();
+        //c_audio->update(camera_pos);
+        // what in the mfkin shit did i just DJed the shit out of yo
+        c_audio->play_audio("test.wav", 0.01, 0.8f);
 
         glEnable(GL_DEPTH_TEST);
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
@@ -110,14 +98,7 @@ void engine::run() {
 
         c_level_manager->draw_demo_level(*c_shader);
 
-        // testing resource manager for texture binding on a random object
-
-        //quad_texture->bind();
-        //quad_texture->tex_unit(*texture_shader, "texture1", 0);
-        //
-        //texture_shader->use();
-        //c_quad->render(texture_shader->shader_id);
-
+        process_console();
         c_debug_menu->render();
 
         glfwSwapBuffers(c_window->get_window());
@@ -144,3 +125,36 @@ void engine::process_console() {
 void engine::shutdown() {
      c_window->shutdown();
 }
+
+
+//c_resource->load_shader("quad_shader", texture_vertex, texture_fragment);
+//c_resource->load_texture("dev_texture", "resources/dev-textures/dev_512x512.jpg", "diffuse");
+
+//c_quad = new quad();
+//if (!c_quad) {
+//    std::cerr << "quad pyzdiec" << std::endl;
+//    return false;
+//} 
+//else std::cout << "quad zajebys" << std::endl;
+
+
+
+        // testing resource manager for texture binding on a random object
+
+        //quad_texture->bind();
+        //quad_texture->tex_unit(*texture_shader, "texture1", 0);
+        //
+        //texture_shader->use();
+        //c_quad->render(texture_shader->shader_id);
+
+
+
+    //shader* texture_shader = c_resource->get_shader("quad_shader");
+    //if (!c_shader || !texture_shader) {
+    //    std::cout << "shaders got fucked" << std::endl;
+    //}
+
+    //texture* quad_texture = c_resource->get_texture("dev_texture");
+    //if (!quad_texture) {
+    //    std::cout << "pyzdiec" << std::endl;
+    //}

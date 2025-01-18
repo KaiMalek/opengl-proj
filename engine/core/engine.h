@@ -7,12 +7,13 @@
 
 #include "../graphics/managers/resource_manager.h"
 #include "../graphics/managers/level_manager.h"
-
 #include "../graphics/textures/quad.h"
-
 #include "../mesh/mesh.h"
+
 #include "../coordinates/coords.h"
 #include "../camera/camera.h"
+
+#include "../audio/audio.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -39,12 +40,12 @@ private:
     debug_menu* c_debug_menu;
     console* c_console;
 
-    quad* c_quad;
-
     resource_manager* c_resource;
     level_manager* c_level_manager;
 
     coords* c_coord;
     camera* c_camera;
+
+    audio* c_audio;
 };
 #endif

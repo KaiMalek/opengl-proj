@@ -39,7 +39,6 @@ bool window::initialize(int width, int height, const char* title) {
     }
 
     glfwSwapInterval(1);
-
     glfwSetFramebufferSizeCallback(m_window, framebuffer_size_callback);
 
     return true;

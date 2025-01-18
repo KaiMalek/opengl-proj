@@ -5,7 +5,6 @@
 #include <string>
 #include "../models/models.h"
 #include "../../core/variables.h"
-#include "../../camera/camera.h"
 
 class level_manager {
 public:
@@ -19,9 +18,8 @@ public:
 private:
     std::vector<model*> models;
 
-    model* c_model_world;
-    model* c_model_basement;
     model* c_model_simon;
+    model* c_model_plat;
 };
 
 
