@@ -8,6 +8,7 @@
 #include "console.h"
 #include "../variables.h"
 #include "../../camera/camera.h"
+#include "../../audio/audio.h"
 
 class debug_menu {
 public:
@@ -18,5 +19,6 @@ public:
     ~debug_menu();
 private:
     camera* c_camera;
+    audio* c_audio;
 };
 #endif

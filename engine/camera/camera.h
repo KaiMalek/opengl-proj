@@ -40,10 +40,18 @@ public:
     void update_vectors();
 
     void process_keyboard_input(GLFWwindow* window, double deltaTime);
+    void unlock_cursor(GLFWwindow* window);
     void process_mouse_input(GLFWwindow* window);
     void process_input(GLFWwindow* window, double deltaTime);
+    void lock_cursor(GLFWwindow* window);
     glm::vec3 get_position() const {
         return m_position;
+    }
+    glm::vec3 get_forward_vec() const {
+        return glm::normalize(m_front);
+    }
+    glm::vec3 get_up_vec() const {
+        return glm::normalize(m_up);
     }
 
 private:

@@ -155,12 +155,15 @@
     <ClCompile Include="engine\graphics\shaders\shaders.cpp" />
     <ClCompile Include="engine\core\window.cpp" />
     <ClCompile Include="engine\graphics\managers\shader_manager.cpp" />
+    <ClCompile Include="engine\graphics\skybox\skybox.cpp" />
     <ClCompile Include="engine\graphics\textures\quad.cpp" />
     <ClCompile Include="engine\graphics\textures\textures.cpp" />
+    <ClCompile Include="engine\helpers\helpers.cpp" />
     <ClCompile Include="engine\mesh\mesh.cpp" />
     <ClCompile Include="engine\coordinates\coords.cpp" />
     <ClCompile Include="engine\graphics\managers\resource_manager.cpp" />
     <ClCompile Include="engine\audio\audio.cpp" />
+    <ClCompile Include="engine\player\player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dependencies\glm_util.h" />
@@ -293,12 +296,15 @@
     <ClInclude Include="engine\graphics\shaders\shaders.h" />
     <ClInclude Include="engine\core\window.h" />
     <ClInclude Include="engine\graphics\managers\shader_manager.h" />
+    <ClInclude Include="engine\graphics\skybox\skybox.h" />
     <ClInclude Include="engine\graphics\textures\quad.h" />
     <ClInclude Include="engine\graphics\textures\textures.h" />
+    <ClInclude Include="engine\helpers\helpers.h" />
     <ClInclude Include="engine\mesh\mesh.h" />
     <ClInclude Include="engine\coordinates\coords.h" />
     <ClInclude Include="engine\graphics\managers\resource_manager.h" />
     <ClInclude Include="engine\audio\audio.h" />
+    <ClInclude Include="engine\player\player.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\diffuse.jpg" />
@@ -308,6 +314,8 @@
   <ItemGroup>
     <None Include="engine\graphics\shaders\shader.frag" />
     <None Include="engine\graphics\shaders\shader.vert" />
+    <None Include="engine\graphics\skybox\skybox_shader.frag" />
+    <None Include="engine\graphics\skybox\skybox_shader.vert" />
     <None Include="resources\skybox\sky_shader.frag" />
     <None Include="resources\skybox\sky_shader.vert" />
   </ItemGroup>

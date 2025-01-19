@@ -11,6 +11,9 @@ console& console::instance() {
 
 void console::log(const std::string& message, log_type type) {
     log_buffer.push_back({ message, type });
+    if (auto_scroll) {
+        auto_scroll = true;
+    }
 }
 
 void console::add_command(const std::string& name, std::function<void()> func) {
@@ -85,7 +88,6 @@ void console::render() {
     ImGui::SetNextWindowPos(ImVec2{ 50.f, 50.f }, ImGuiCond_Once);
     ImGui::SetNextWindowSize(ImVec2{ 500.f, 700.f }, ImGuiCond_Once);
     ImGui::Begin("console", nullptr, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoScrollbar);
-
     if (auto_scroll) {
         ImGui::SetScrollHereY(1.0f);
     }

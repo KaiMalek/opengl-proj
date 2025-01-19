@@ -25,6 +25,8 @@ bool engine::initialize(int width, int height, const char* title) {
 
     c_resource = &resource_manager::instance();
     c_resource->load_shader("world_shader", shader_vertex, shader_fragment);
+    c_resource->load_shader("skybox_shader", skybox_fragment, skybox_fragment);
+
     c_console->instance().log("Resource manager initialized");
 
     glm::vec3 camera_pos(0.0f, 1.0f, 3.0f);
@@ -52,6 +54,12 @@ bool engine::initialize(int width, int height, const char* title) {
     c_audio->init();
     c_console->instance().log("Audio initialized");
 
+    c_skybox = new skybox();
+    if (!c_skybox->initialize(skybox_faces)) {
+        std::cerr << "Skybox init failed!" << std::endl;
+        return false;
+    }
+
     c_level_manager->load_demo_level();
     if (c_level_manager) {
         c_console->instance().log("Shader paths:");
@@ -69,6 +77,7 @@ void engine::run() {
     glfwSetKeyCallback(c_window->get_window(), c_window->fullscreen_callback);
 
     shader* c_shader = c_resource->get_shader("world_shader");
+    shader* c_skybox_shader = c_resource->get_shader("skybox_shader");
  
     while (!c_window->should_close()) {
         c_time->update();
@@ -77,13 +86,16 @@ void engine::run() {
         c_window->poll_events();
         c_camera->process_input(c_window->get_window(), delta_time);
 
-        // would be perfect for a radio station chattering some gibberish on a coffee table outside
-        //c_audio->play_3d_audio("background-cof.wav", glm::vec3(0.f, 0.f, 0.f), 0.01, 10.5f, 0.f);
-        //glm::vec3 camera_pos = c_camera->get_position();
-        //c_audio->update(camera_pos);
-        // what in the mfkin shit did i just DJed the shit out of yo
-        c_audio->play_audio("test.wav", 0.01, 0.8f);
+        //c_audio->play_audio(variables::background_audio_file, variables::background_audio, 0.8f, true);
+        // perfect sound for radio hehe
+        c_audio->play_3d_audio("test.wav", glm::vec3(-43.0539f, 4.90f, 8.15248f), 0.007, 15.f, 0.1f);
 
+        glm::vec3 listener_position = c_camera->get_position();
+        glm::vec3 listener_forward = c_camera->get_forward_vec();
+        glm::vec3 listener_up = c_camera->get_up_vec();
+
+        c_audio->update(listener_position, listener_forward, listener_up);
+        
         glEnable(GL_DEPTH_TEST);
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -97,6 +109,11 @@ void engine::run() {
         c_shader->set_mat4("view", view);
 
         c_level_manager->draw_demo_level(*c_shader);
+
+        c_skybox_shader->use();
+        c_skybox->render(*c_skybox_shader);
+
+        std::cout << c_helper->vec3_to_string(c_camera->get_position()) << std::endl;
 
         process_console();
         c_debug_menu->render();

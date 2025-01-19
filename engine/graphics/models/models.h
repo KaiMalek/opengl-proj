@@ -33,8 +33,13 @@ public:
     void draw(shader& shader);
     void set_model_position(const glm::vec3& position);
 
+    void set_model_scale(const glm::vec3& scale);
+
 private:
     glm::vec3 model_position;
+    glm::vec3 model_scale;
+
+    glm::mat4 model_mat4 = glm::mat4(1.0f);
 
     void load_model(const std::string& path);
     void process_node(aiNode* node, const aiScene* scene);

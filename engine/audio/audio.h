@@ -23,11 +23,11 @@ public:
 
     void init();
     void load_audio(const std::string& filename);
-    void update(const glm::vec3& listener_position);
-    void play_audio(const std::string& filename, float volume = 1.0f, float frequency = 1.0f);
+    void update(const glm::vec3& listener_position, const glm::vec3& listener_forward, const glm::vec3& listener_up);
+    void play_audio(const std::string& filename, float volume = 1.0f, float frequency = 1.0f, bool loop_audio = false);
     void play_3d_audio(const std::string& filename, const glm::vec3& position, float volume = 1.0f, float max_distance = 50.0f, float fade_in_duration = 0.3f);
     void stop_audio(const std::string& filename);
-    void set_audio_volume(const std::string& filename, float volume);
+    void set_audio_volume(float volume);
 
 private:
     float calculate_volume(const glm::vec3& listener_position, const glm::vec3& sound_position, float max_distance, float initial_volume);

@@ -72,15 +72,11 @@ void camera::process_keyboard_input(GLFWwindow* window, double deltaTime) {
 
 void camera::process_mouse_input(GLFWwindow* window) {
     if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS && !m_cursor_locked) {
-        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-        m_cursor_locked = true;
-
-        glfwGetCursorPos(window, &lastX, &lastY);
+        lock_cursor(window);
     }
 
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS && m_cursor_locked) {
-        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-        m_cursor_locked = false;
+        unlock_cursor(window);
     }
 
     if (m_cursor_locked) {
@@ -99,18 +95,17 @@ void camera::process_mouse_input(GLFWwindow* window) {
         rotate(yOffset, xOffset);
     }
 }
-// very gheto solution for insert open/close menu, but it is what it is lmao
+
+
 void camera::process_input(GLFWwindow* window, double deltaTime) {
     if (glfwGetKey(window, GLFW_KEY_INSERT) == GLFW_PRESS && !variables::was_insert_pressed) {
         variables::menu_open = !variables::menu_open;
 
         if (variables::menu_open) {
-            glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-            glfwGetCursorPos(window, &lastX, &lastY);
+            unlock_cursor(window);
         }
         else {
-            glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-            glfwSetCursorPos(window, lastX, lastY);
+            lock_cursor(window);
         }
 
         variables::was_insert_pressed = true;
@@ -128,12 +123,10 @@ void camera::process_input(GLFWwindow* window, double deltaTime) {
         variables::console_visible = !variables::console_visible;
 
         if (variables::console_visible) {
-            glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-            glfwGetCursorPos(window, &lastX, &lastY);
+            unlock_cursor(window);
         }
         else {
-            glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-            glfwSetCursorPos(window, lastX, lastY);
+            lock_cursor(window);
         }
 
         variables::was_grave_pressed = true;
@@ -141,4 +134,16 @@ void camera::process_input(GLFWwindow* window, double deltaTime) {
     else if (glfwGetKey(window, GLFW_KEY_GRAVE_ACCENT) == GLFW_RELEASE) {
         variables::was_grave_pressed = false;
     }
+}
+
+void camera::lock_cursor(GLFWwindow* window) {
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    glfwGetCursorPos(window, &lastX, &lastY);
+    m_cursor_locked = true;
+}
+
+void camera::unlock_cursor(GLFWwindow* window) {
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+    glfwGetCursorPos(window, &lastX, &lastY);
+    m_cursor_locked = false;
 }

@@ -47,13 +47,9 @@ void debug_menu::frame_render() {
 
     switch (tab) {
     case 0:
-        ImGui::SliderFloat("Worlds angle", &variables::cube_angle, 0.0f, 360.0f, "%.2f");
-        ImGui::SliderFloat("Worlds rotation speed", &variables::cube_rotate_speed, 0.0f, 10.0f, "%.2f");
         break;
     case 1:
         ImGui::Checkbox("Enable movement", &variables::enable_movement);
-        //ImGui::SliderFloat("Movements speed", &c_camera->m_movement_speed, 0.0f, 10.0f, "%.2f");
-        //ImGui::SliderFloat("Mouse sensitivity", &c_camera->m_mouse_sensitivity, 0.0f, 1.0f, "%.2f");
         break;
     }
 

@@ -15,7 +15,12 @@ void model::draw(shader& shader) {
 
 void model::set_model_position(const glm::vec3& position) {
     model_position = position;
-    model_matrix = glm::translate(glm::mat4(1.0f), position);
+    model_matrix = glm::translate(glm::mat4(1.f), position);
+}
+
+void model::set_model_scale(const glm::vec3& scale) {
+    model_scale = scale;
+    model_matrix = glm::scale(model_matrix, scale);
 }
 
 void model::load_model(const std::string& path) {

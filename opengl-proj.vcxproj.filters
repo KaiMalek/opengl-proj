@@ -93,6 +93,15 @@
     <ClCompile Include="engine\audio\audio.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="engine\helpers\helpers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\player\player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\graphics\skybox\skybox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dependencies\includes\glad\glad.h">
@@ -503,6 +512,15 @@
     <ClInclude Include="engine\audio\audio.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="engine\helpers\helpers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\player\player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\graphics\skybox\skybox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\dev_128x128.jpg">
@@ -520,5 +538,7 @@
     <None Include="engine\graphics\shaders\shader.vert" />
     <None Include="resources\skybox\sky_shader.frag" />
     <None Include="resources\skybox\sky_shader.vert" />
+    <None Include="engine\graphics\skybox\skybox_shader.frag" />
+    <None Include="engine\graphics\skybox\skybox_shader.vert" />
   </ItemGroup>
 </Project>

@@ -4,7 +4,9 @@
 #include "window.h"
 #include "timer.h"
 #include "debug_menu/debug_menu.h"
+#include "../helpers/helpers.h"
 
+#include "../graphics/skybox/skybox.h"
 #include "../graphics/managers/resource_manager.h"
 #include "../graphics/managers/level_manager.h"
 #include "../graphics/textures/quad.h"
@@ -34,12 +36,22 @@ public:
 
     const char* texture_vertex = "engine/graphics/textures/texture_shader.vert";
     const char* texture_fragment = "engine/graphics/textures/texture_shader.frag";
+
+    const char* skybox_vertex = "engine/graphics/skybox/skybox_shader.vert";
+    const char* skybox_fragment = "engine/graphics/skybox/skybox_shader.frag";
+
+    std::vector<std::string> skybox_faces = {
+    "resources/skybox-main/sky_rt0001.bmp", "resources/skybox-main/sky_lf0001.bmp", "resources/skybox-main/sky_up0001.bmp",
+    "resources/skybox-main/sky_dn0001.bmp", "resources/skybox-main/sky_ft0001.bmp", "resources/skybox-main/sky_bk0001.bmp"
+    };
 private:
     window* c_window;
     timer* c_time;
     debug_menu* c_debug_menu;
     console* c_console;
+    helpers* c_helper;
 
+    skybox* c_skybox;
     resource_manager* c_resource;
     level_manager* c_level_manager;
 

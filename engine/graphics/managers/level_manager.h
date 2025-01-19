@@ -18,8 +18,10 @@ public:
 private:
     std::vector<model*> models;
 
-    model* c_model_simon;
-    model* c_model_plat;
+    model* c_model_player;
+    model* c_model_player2;
+    model* c_model_radio;
+    model* c_model_world;
 };
 
 
