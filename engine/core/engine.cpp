@@ -86,6 +86,8 @@ void engine::run() {
         c_time->update();
         double delta_time = c_time->get_delta_time();
 
+        c_level_manager->update(*c_camera, delta_time);
+
         c_window->poll_events();
         c_camera->process_input(c_window->get_window(), delta_time);
 

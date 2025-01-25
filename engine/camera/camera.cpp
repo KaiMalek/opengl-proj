@@ -22,6 +22,27 @@ glm::mat4 camera::get_projection_matrix() {
     return m_projection;
 }
 
+glm::quat camera::get_orientation() const {
+    return m_orientation;
+}
+
+void camera::update() {
+    m_view = glm::lookAt(m_position, m_position + m_front, m_up);
+    update_orientation();
+}
+
+void camera::update_orientation() {
+    glm::quat pitch_quat = glm::angleAxis(glm::radians(m_pitch), m_right);
+    glm::quat yaw_quat = glm::angleAxis(glm::radians(m_yaw), m_up);
+
+    m_orientation = yaw_quat * pitch_quat;
+}
+
+void camera::update_vectors() {
+    m_right = glm::normalize(glm::cross(m_front, m_up));
+    m_up = glm::normalize(glm::cross(m_right, m_front));
+}
+
 void camera::move(glm::vec3 delta) {
     m_position += delta;
     update();
@@ -43,15 +64,6 @@ void camera::rotate(float pitch, float yaw) {
 
     m_front = glm::normalize(direction);
     update();
-}
-
-void camera::update() {
-    m_view = glm::lookAt(m_position, m_position + m_front, m_up);
-}
-
-void camera::update_vectors() {
-    m_right = glm::normalize(glm::cross(m_front, m_up));
-    m_up = glm::normalize(glm::cross(m_right, m_front));
 }
 
 void camera::process_keyboard_input(GLFWwindow* window, double deltaTime) {

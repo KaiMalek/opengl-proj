@@ -22,6 +22,15 @@ void model::set_model_scale(const glm::vec3& scale) {
     model_scale = scale;
     model_matrix = glm::scale(model_matrix, scale);
 }
+// fuck this shit
+void model::set_model_matrix(const glm::mat4& matrix) {
+    model_matrix = matrix;
+}
+
+void model::follow_player(const glm::vec3& player_position, const glm::vec3& offset) {
+    glm::vec3 new_position = player_position + offset;
+    set_model_position(new_position);
+}
 
 void model::load_model(const std::string& path) {
     Assimp::Importer importer;

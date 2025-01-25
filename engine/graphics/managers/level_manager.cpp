@@ -2,6 +2,7 @@
 #include <iostream>
 
 level_manager::level_manager() {
+    c_character = new character();
 }
 
 level_manager::~level_manager() {
@@ -9,6 +10,7 @@ level_manager::~level_manager() {
         delete m;
     }
     models.clear();
+    delete c_character;
 }
 
 void level_manager::draw_demo_level(shader& shader) {
@@ -16,6 +18,7 @@ void level_manager::draw_demo_level(shader& shader) {
     c_model_player2->draw(shader);
     c_model_radio->draw(shader);
     c_model_world->draw(shader);
+    c_character->c_player_arm->draw(shader);
 }
 
 void level_manager::load_demo_level() {
@@ -40,4 +43,10 @@ void level_manager::load_demo_level() {
     c_model_world = new model("C:\\projects\\opengl-proj\\resources\\dust-world\\dust2.obj");
     models.push_back(c_model_world);
     c_model_world->set_model_position(glm::vec3(0.f, 0.f, .0f));
+
+    models.push_back(c_character->c_player_arm);
+}
+
+void level_manager::update(camera& player_camera, float delta_time) {
+    c_character->update(player_camera, delta_time);
 }

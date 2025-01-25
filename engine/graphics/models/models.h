@@ -35,6 +35,14 @@ public:
 
     void set_model_scale(const glm::vec3& scale);
 
+    void set_model_matrix(const glm::mat4& matrix);
+
+    void follow_player(const glm::vec3& player_position, const glm::vec3& offset);
+
+    glm::vec3 get_model_position() const {
+        return model_position;
+    }
+
 private:
     glm::vec3 model_position;
     glm::vec3 model_scale;

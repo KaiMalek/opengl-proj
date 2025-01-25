@@ -20,7 +20,7 @@ public:
     float m_pitch;
     float m_movement_speed;
     float m_mouse_sensitivity;
-    float m_fov = 45.f;
+    float m_fov;
     float m_aspect;
     float m_near;
     float m_far;
@@ -29,13 +29,17 @@ public:
     glm::mat4 m_projection;
     glm::mat4 m_view;
 
+    glm::quat m_orientation;
+
     camera(glm::vec3 position, glm::vec3 up, float fov, float aspect, float near, float far);
 
     glm::mat4 get_view_matrix();
     glm::mat4 get_projection_matrix();
+    glm::quat get_orientation() const;
 
     void move(glm::vec3 delta);
     void rotate(float pitch, float yaw);
+    void update_orientation();
     void update();
     void update_vectors();
 
