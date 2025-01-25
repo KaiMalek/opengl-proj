@@ -41,8 +41,8 @@ public:
     const char* skybox_fragment = "engine/graphics/skybox/skybox_shader.frag";
 
     std::vector<std::string> skybox_faces = {
-    "resources/skybox-main/sky_rt0001.bmp", "resources/skybox-main/sky_lf0001.bmp", "resources/skybox-main/sky_up0001.bmp",
-    "resources/skybox-main/sky_dn0001.bmp", "resources/skybox-main/sky_ft0001.bmp", "resources/skybox-main/sky_bk0001.bmp"
+    "C:\\projects\\opengl-proj\\resources\\skybox_main\\sky_rt0001.bmp", "C:\\projects\\opengl-proj\\resources\\skybox_main\\sky_lf0001.bmp", "C:\\projects\\opengl-proj\\resources\\skybox_main\\sky_up0001.bmp",
+    "C:\\projects\\opengl-proj\\resources\\skybox_main\\sky_dn0001.bmp", "C:\\projects\\opengl-proj\\resources\\skybox_main\\sky_ft0001.bmp", "C:\\projects\\opengl-proj\\resources\\skybox_main\\sky_bk0001.bmp"
     };
 private:
     window* c_window;

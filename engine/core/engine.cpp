@@ -54,17 +54,20 @@ bool engine::initialize(int width, int height, const char* title) {
     c_audio->init();
     c_console->instance().log("Audio initialized");
 
-    c_skybox = new skybox();
-    if (!c_skybox->initialize(skybox_faces)) {
+    c_skybox = new skybox(skybox_faces);
+    if (!c_skybox) {
         std::cerr << "Skybox init failed!" << std::endl;
         return false;
     }
+    c_console->instance().log("Skybox initialized");
 
     c_level_manager->load_demo_level();
     if (c_level_manager) {
         c_console->instance().log("Shader paths:");
         c_console->instance().log(shader_vertex);
         c_console->instance().log(shader_fragment);
+        c_console->instance().log(skybox_vertex);
+        c_console->instance().log(skybox_fragment);
         c_console->instance().log("Shaders initialized");
         c_console->instance().log("world_shader loaded");
     }
@@ -86,6 +89,14 @@ void engine::run() {
         c_window->poll_events();
         c_camera->process_input(c_window->get_window(), delta_time);
 
+        glm::mat4 projection = c_camera->get_projection_matrix();
+        glm::mat4 view = c_camera->get_view_matrix();
+
+        glEnable(GL_DEPTH_TEST);
+        //glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+        // radio/audio sounds
         //c_audio->play_audio(variables::background_audio_file, variables::background_audio, 0.8f, true);
         // perfect sound for radio hehe
         c_audio->play_3d_audio("test.wav", glm::vec3(-43.0539f, 4.90f, 8.15248f), 0.007, 15.f, 0.1f);
@@ -95,24 +106,20 @@ void engine::run() {
         glm::vec3 listener_up = c_camera->get_up_vec();
 
         c_audio->update(listener_position, listener_forward, listener_up);
-        
-        glEnable(GL_DEPTH_TEST);
-        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+        // draw skybox
+        glDepthMask(GL_FALSE);
+        c_skybox_shader->use();
+        c_skybox->draw(*c_skybox_shader, view, projection);
+        glDepthMask(GL_TRUE); 
+
+        // render world
         c_shader->use();
-
-        glm::mat4 projection = c_camera->get_projection_matrix();
-        glm::mat4 view = c_camera->get_view_matrix();
-
         c_shader->set_mat4("projection", projection);
         c_shader->set_mat4("view", view);
-
         c_level_manager->draw_demo_level(*c_shader);
 
-        c_skybox_shader->use();
-        c_skybox->render(*c_skybox_shader);
-
+        // helpers
         std::cout << c_helper->vec3_to_string(c_camera->get_position()) << std::endl;
 
         process_console();

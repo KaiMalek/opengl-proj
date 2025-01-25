@@ -20,7 +20,7 @@ public:
     float m_pitch;
     float m_movement_speed;
     float m_mouse_sensitivity;
-    float m_fov;
+    float m_fov = 45.f;
     float m_aspect;
     float m_near;
     float m_far;

@@ -6,19 +6,23 @@
 #include <glad/glad.h>
 #include <stb/stb_image.h>
 
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+
 #include "../shaders/shaders.h"
 
 class skybox {
-public:
-    skybox();
-    ~skybox();
-    bool initialize(const std::vector<std::string>& faces);
-    void render(const shader& shader);
-
 private:
-    GLuint texture_id;
-    GLuint vao;
-    GLuint vbo;
+    unsigned int skybox_vao, skybox_vbo;
+    unsigned int cubemap_texture;
+
+    unsigned int load_cubemap(const std::vector<std::string>& faces);
+
+public:
+    skybox(const std::vector<std::string>& faces);
+    ~skybox();
+
+    void draw(const shader& shader, const glm::mat4& view_matrix, const glm::mat4& projection_matrix);
 };
 
 #endif
