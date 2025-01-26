@@ -160,11 +160,11 @@
     <ClCompile Include="engine\graphics\textures\quad.cpp" />
     <ClCompile Include="engine\graphics\textures\textures.cpp" />
     <ClCompile Include="engine\helpers\helpers.cpp" />
+    <ClCompile Include="engine\interpolation\interpolation.cpp" />
     <ClCompile Include="engine\mesh\mesh.cpp" />
     <ClCompile Include="engine\coordinates\coords.cpp" />
     <ClCompile Include="engine\graphics\managers\resource_manager.cpp" />
     <ClCompile Include="engine\audio\audio.cpp" />
-    <ClCompile Include="engine\player\player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dependencies\glm_util.h" />
@@ -302,11 +302,11 @@
     <ClInclude Include="engine\graphics\textures\quad.h" />
     <ClInclude Include="engine\graphics\textures\textures.h" />
     <ClInclude Include="engine\helpers\helpers.h" />
+    <ClInclude Include="engine\interpolation\interpolation.h" />
     <ClInclude Include="engine\mesh\mesh.h" />
     <ClInclude Include="engine\coordinates\coords.h" />
     <ClInclude Include="engine\graphics\managers\resource_manager.h" />
     <ClInclude Include="engine\audio\audio.h" />
-    <ClInclude Include="engine\player\player.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\diffuse.jpg" />

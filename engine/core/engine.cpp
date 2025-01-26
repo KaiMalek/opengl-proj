@@ -86,8 +86,6 @@ void engine::run() {
         c_time->update();
         double delta_time = c_time->get_delta_time();
 
-        c_level_manager->update(*c_camera, delta_time);
-
         c_window->poll_events();
         c_camera->process_input(c_window->get_window(), delta_time);
 
@@ -95,7 +93,7 @@ void engine::run() {
         glm::mat4 view = c_camera->get_view_matrix();
 
         glEnable(GL_DEPTH_TEST);
-        //glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         // radio/audio sounds
@@ -120,6 +118,8 @@ void engine::run() {
         c_shader->set_mat4("projection", projection);
         c_shader->set_mat4("view", view);
         c_level_manager->draw_demo_level(*c_shader);
+
+        c_level_manager->update(*c_camera, delta_time);
 
         // helpers
         std::cout << c_helper->vec3_to_string(c_camera->get_position()) << std::endl;
