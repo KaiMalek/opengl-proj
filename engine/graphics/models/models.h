@@ -43,6 +43,10 @@ public:
         return model_position;
     }
 
+    glm::vec3 get_model_scale() const {
+        return model_scale;
+    }
+
 private:
     glm::vec3 model_position;
     glm::vec3 model_scale;

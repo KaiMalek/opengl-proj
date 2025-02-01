@@ -26,6 +26,9 @@ bool engine::initialize(int width, int height, const char* title) {
     c_resource = &resource_manager::instance();
     c_resource->load_shader("world_shader", shader_vertex, shader_fragment);
     c_resource->load_shader("skybox_shader", skybox_fragment, skybox_fragment);
+    c_resource->load_shader("light_shader", light_fragment, light_fragment);
+    c_resource->load_shader("cube_shader", texture_fragment, texture_vertex);
+    c_resource->load_texture("cube_texture", "resources/dev-textures/dev_512x512.jpg", "texture_diffuse1");
 
     c_console->instance().log("Resource manager initialized");
 
@@ -39,12 +42,28 @@ bool engine::initialize(int width, int height, const char* title) {
     }
     c_console->instance().log("Camera initialized");
 
+    c_cube = new cube();
+    if (!c_cube) {
+        std::cerr << "Cube rendering failed!" << std::endl;
+        return false;
+    }
+    c_console->instance().log("Cube rendered");
+
     c_level_manager = new level_manager();
     if (!c_level_manager) {
         std::cerr << "Level manager init failed!" << std::endl;
         return false;
     }
     c_console->instance().log("Level manager initialized");
+
+    c_light_manager = new light_manager();
+    if (!c_light_manager) {
+        std::cerr << "Light manager init failed!" << std::endl;
+        return false;
+    }
+    c_console->instance().log("Light manager initialized");
+
+    c_light_manager->add_light(glm::vec3(0.f, 10.f, 0.0f), glm::vec3(1.f, 1.f, 1.f), 100.f, lights::light_type::SPOT);
 
     c_audio = new audio();
     if (!c_audio) {
@@ -68,6 +87,8 @@ bool engine::initialize(int width, int height, const char* title) {
         c_console->instance().log(shader_fragment);
         c_console->instance().log(skybox_vertex);
         c_console->instance().log(skybox_fragment);
+        c_console->instance().log(light_vertex);
+        c_console->instance().log(light_fragment);
         c_console->instance().log("Shaders initialized");
         c_console->instance().log("world_shader loaded");
     }
@@ -81,6 +102,17 @@ void engine::run() {
 
     shader* c_shader = c_resource->get_shader("world_shader");
     shader* c_skybox_shader = c_resource->get_shader("skybox_shader");
+    shader* c_light_shader = c_resource->get_shader("light_shader");
+
+    shader* cube_shader = c_resource->get_shader("cube_shader");
+    if (!c_shader || !cube_shader) {
+        std::cout << "shaders got fucked" << std::endl;
+    }
+
+    texture* cube_texture = c_resource->get_texture("cube_texture");
+    if (!cube_texture) {
+        std::cout << "pyzdiec" << std::endl;
+    }
  
     while (!c_window->should_close()) {
         c_time->update();
@@ -107,6 +139,9 @@ void engine::run() {
 
         c_audio->update(listener_position, listener_forward, listener_up);
 
+        // draw lighting
+        c_light_manager->render_lights(*c_light_shader);
+
         // draw skybox
         glDepthMask(GL_FALSE);
         c_skybox_shader->use();
@@ -119,7 +154,12 @@ void engine::run() {
         c_shader->set_mat4("view", view);
         c_level_manager->draw_demo_level(*c_shader);
 
-        c_level_manager->update(*c_camera, delta_time);
+        // draw cube
+        cube_texture->bind();
+        cube_texture->tex_unit(*cube_shader, "texture_diffuse1", 0);
+
+        cube_shader->use();
+        c_cube->render(cube_shader->shader_id);
 
         // helpers
         std::cout << c_helper->vec3_to_string(c_camera->get_position()) << std::endl;

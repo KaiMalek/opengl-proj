@@ -144,11 +144,12 @@
     <ClCompile Include="dependencies\includes\imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="dependencies\includes\imgui\imgui_widgets.cpp" />
     <ClCompile Include="engine\camera\camera.cpp" />
-    <ClCompile Include="engine\characters\character.cpp" />
     <ClCompile Include="engine\core\debug_menu\console.cpp" />
     <ClCompile Include="engine\core\debug_menu\debug_menu.cpp" />
     <ClCompile Include="engine\core\engine.cpp" />
     <ClCompile Include="engine\core\timer.cpp" />
+    <ClCompile Include="engine\graphics\lights\lights.cpp" />
+    <ClCompile Include="engine\graphics\managers\light_manager.cpp" />
     <ClCompile Include="engine\graphics\managers\texture_manager.cpp" />
     <ClCompile Include="engine\graphics\models\models.cpp" />
     <ClCompile Include="engine\graphics\managers\level_manager.cpp" />
@@ -157,7 +158,8 @@
     <ClCompile Include="engine\core\window.cpp" />
     <ClCompile Include="engine\graphics\managers\shader_manager.cpp" />
     <ClCompile Include="engine\graphics\skybox\skybox.cpp" />
-    <ClCompile Include="engine\graphics\textures\quad.cpp" />
+    <ClCompile Include="engine\graphics\renderer\cube.cpp" />
+    <ClCompile Include="engine\graphics\renderer\quad.cpp" />
     <ClCompile Include="engine\graphics\textures\textures.cpp" />
     <ClCompile Include="engine\helpers\helpers.cpp" />
     <ClCompile Include="engine\interpolation\interpolation.cpp" />
@@ -283,8 +285,9 @@
     <ClInclude Include="dependencies\includes\imgui\imstb_truetype.h" />
     <ClInclude Include="dependencies\includes\KHR\khrplatform.h" />
     <ClInclude Include="dependencies\includes\stb\stb_image.h" />
-    <ClInclude Include="engine\characters\character.h" />
     <ClInclude Include="engine\core\debug_menu\console.h" />
+    <ClInclude Include="engine\graphics\lights\lights.h" />
+    <ClInclude Include="engine\graphics\managers\light_manager.h" />
     <ClInclude Include="engine\graphics\managers\texture_manager.h" />
     <ClInclude Include="engine\camera\camera.h" />
     <ClInclude Include="engine\core\debug_menu\debug_menu.h" />
@@ -299,7 +302,8 @@
     <ClInclude Include="engine\core\window.h" />
     <ClInclude Include="engine\graphics\managers\shader_manager.h" />
     <ClInclude Include="engine\graphics\skybox\skybox.h" />
-    <ClInclude Include="engine\graphics\textures\quad.h" />
+    <ClInclude Include="engine\graphics\renderer\cube.h" />
+    <ClInclude Include="engine\graphics\renderer\quad.h" />
     <ClInclude Include="engine\graphics\textures\textures.h" />
     <ClInclude Include="engine\helpers\helpers.h" />
     <ClInclude Include="engine\interpolation\interpolation.h" />
@@ -314,10 +318,14 @@
     <Image Include="resources\dev_128x128.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="engine\graphics\lights\light_shader.frag" />
+    <None Include="engine\graphics\lights\light_shader.vert" />
     <None Include="engine\graphics\shaders\shader.frag" />
     <None Include="engine\graphics\shaders\shader.vert" />
     <None Include="engine\graphics\skybox\skybox_shader.frag" />
     <None Include="engine\graphics\skybox\skybox_shader.vert" />
+    <None Include="engine\graphics\renderer\texture_shader.frag" />
+    <None Include="engine\graphics\renderer\texture_shader.vert" />
     <None Include="resources\skybox\sky_shader.frag" />
     <None Include="resources\skybox\sky_shader.vert" />
   </ItemGroup>

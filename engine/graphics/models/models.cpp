@@ -22,7 +22,7 @@ void model::set_model_scale(const glm::vec3& scale) {
     model_scale = scale;
     model_matrix = glm::scale(model_matrix, scale);
 }
-// fuck this shit
+
 void model::set_model_matrix(const glm::mat4& matrix) {
     model_matrix = matrix;
 }

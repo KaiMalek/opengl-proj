@@ -20,7 +20,6 @@ public:
     GLuint get_id() const {
         return texture_id;
     }
-
 };
 
 #endif

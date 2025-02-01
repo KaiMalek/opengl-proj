@@ -2,6 +2,7 @@
 #include <iostream>
 
 texture_manager& texture_manager::instance() {
+    std::cout << "Texture manager initialized." << std::endl;
     static texture_manager instance;
     return instance;
 }

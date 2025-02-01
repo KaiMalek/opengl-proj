@@ -2,6 +2,7 @@
 #include <iostream>
 
 resource_manager& resource_manager::instance() {
+    std::cout << "Resource manager initialized." << std::endl;
     static resource_manager instance;
     return instance;
 }

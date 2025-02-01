@@ -81,7 +81,7 @@
     <ClCompile Include="engine\graphics\managers\texture_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="engine\graphics\textures\quad.cpp">
+    <ClCompile Include="engine\graphics\renderer\quad.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="engine\core\debug_menu\console.cpp">
@@ -99,10 +99,16 @@
     <ClCompile Include="engine\graphics\skybox\skybox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="engine\characters\character.cpp">
+    <ClCompile Include="engine\interpolation\interpolation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="engine\interpolation\interpolation.cpp">
+    <ClCompile Include="engine\graphics\lights\lights.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\graphics\managers\light_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\graphics\renderer\cube.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -503,7 +509,7 @@
     <ClInclude Include="engine\graphics\managers\texture_manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="engine\graphics\textures\quad.h">
+    <ClInclude Include="engine\graphics\renderer\quad.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="engine\core\debug_menu\console.h">
@@ -521,10 +527,16 @@
     <ClInclude Include="engine\graphics\skybox\skybox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="engine\characters\character.h">
+    <ClInclude Include="engine\interpolation\interpolation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="engine\interpolation\interpolation.h">
+    <ClInclude Include="engine\graphics\lights\lights.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\graphics\managers\light_manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\graphics\renderer\cube.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -546,5 +558,9 @@
     <None Include="resources\skybox\sky_shader.vert" />
     <None Include="engine\graphics\skybox\skybox_shader.frag" />
     <None Include="engine\graphics\skybox\skybox_shader.vert" />
+    <None Include="engine\graphics\lights\light_shader.frag" />
+    <None Include="engine\graphics\lights\light_shader.vert" />
+    <None Include="engine\graphics\renderer\texture_shader.frag" />
+    <None Include="engine\graphics\renderer\texture_shader.vert" />
   </ItemGroup>
 </Project>

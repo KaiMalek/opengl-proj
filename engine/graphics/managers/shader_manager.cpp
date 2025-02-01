@@ -2,6 +2,7 @@
 #include <iostream>
 
 shader_manager& shader_manager::instance() {
+    std::cout << "Shader manager initialized." << std::endl;
     static shader_manager instance;
     return instance;
 }
